@@ -20,12 +20,16 @@ h1 {
 }
 
 #dados {
-    padding-left: 10px;
+    padding-left: 30px;
 }
 
 .temas {
     margin-top: 30px;
     border: 1px soliD;
+}
+
+li {
+    list-style-type: disc;
 }
 
 tr,
