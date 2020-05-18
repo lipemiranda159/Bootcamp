@@ -1,0 +1,20 @@
+body {
+    margin-left: 15px;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+form {
+    padding-top: 30px;
+}
+
+.list {
+    padding-top: 30px;
+    margin-left: 15px;
+}
+
+li {
+    display: flex;
+}
