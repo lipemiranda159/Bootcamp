@@ -1,5 +1,10 @@
 window.addEventListener('load', render);
 
+let globalRed =  null;
+let globalGreen = null;
+let globalBlue = null;
+
+
 function getId(label) {
     let id = '';
     switch (label) {
@@ -75,12 +80,9 @@ function getHexValue(value) {
 }
 
 function getRgbColor() {
-    let red = document.querySelector('#red');
-    let green = document.querySelector('#green');
-    let blue = document.querySelector('#blue');
-    let redValue = getHexValue(red.value);
-    let greenValue = getHexValue(green.value);
-    let blueValue = getHexValue(blue.value);  
+    let redValue = getHexValue(globalRed.value);
+    let greenValue = getHexValue(globalGreen.value);
+    let blueValue = getHexValue(globalBlue.value);  
     return '#' + redValue +greenValue
          +blueValue;
 }
@@ -142,4 +144,7 @@ function render() {
     optionDiv.appendChild(createDiv('green'));
     optionDiv.appendChild(createDiv('blue'));
     optionDiv.appendChild(createColorDiv());
+    globalRed = document.querySelector('#red');
+    globalGreen = document.querySelector('#green');
+    globalBlue = document.querySelector('#blue');
 }
