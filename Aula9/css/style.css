@@ -17,4 +17,15 @@ form {
 
 li {
     display: flex;
+    align-items: center;
+}
+
+.btn-text {
+    margin-left: 10px;
+}
+
+.btn {
+    border-radius: 1000px;
+    background-color: red;
+    font-weight: bold;
 }
