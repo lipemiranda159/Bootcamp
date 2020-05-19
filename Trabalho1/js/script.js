@@ -69,14 +69,20 @@ function createEdit(label) {
     return input;
 }
 
+function getHexValue(value) {
+
+    return value !== '0' ? parseInt(value).toString('16') : '00';
+}
+
 function getRgbColor() {
     let red = document.querySelector('#red');
     let green = document.querySelector('#green');
     let blue = document.querySelector('#blue');
-
-    return '#' + parseInt(red.value).toString(16) +
-        parseInt(green.value).toString(16) +
-        parseInt(blue.value).toString(16);
+    let redValue = getHexValue(red.value);
+    let greenValue = getHexValue(green.value);
+    let blueValue = getHexValue(blue.value);  
+    return '#' + redValue +greenValue
+         +blueValue;
 }
 
 function updateDivColor() {
