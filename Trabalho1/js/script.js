@@ -3,7 +3,7 @@ window.addEventListener('load', render);
 let globalRed =  null;
 let globalGreen = null;
 let globalBlue = null;
-
+let globalDiv = null;
 
 function getId(label) {
     let id = '';
@@ -89,9 +89,7 @@ function getRgbColor() {
 
 function updateDivColor() {
     let color = getRgbColor();
-    let div = document.querySelector('.view');
-    console.log(div.style.backgroundColor);
-    div.style.backgroundColor = color;
+    globalDiv.style.backgroundColor = color;
 }
 
 function createRange(label, edit) {
@@ -147,4 +145,5 @@ function render() {
     globalRed = document.querySelector('#red');
     globalGreen = document.querySelector('#green');
     globalBlue = document.querySelector('#blue');
+    globalDiv = document.querySelector('.view');
 }
