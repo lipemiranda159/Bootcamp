@@ -1,0 +1,59 @@
+body {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+}
+
+.red,
+.green,
+.blue {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.range-red,
+.range-green,
+.range-blue {
+    width: 200px;
+    margin-left: 5px;
+}
+
+.range-green {
+    margin-left: 15px;
+}
+
+.range-blue {
+    margin-left: 20px;
+}
+
+.number {
+    width: 2rem;
+    margin-left: 5px;
+}
+
+.view {
+    margin-top: 15px;
+    background-color: red;
+    width: 100px;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1000px;
+}
+
+.main-view {
+    display: flex;
+}
