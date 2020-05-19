@@ -18,9 +18,9 @@ function updateElementsInHtml() {
         let li = document.createElement('li');
         let button = document.createElement('button');
         let text = document.createElement('h5');
-        text.setAttribute('class', 'btn-text');
+        text.classList.add('btn-text');
         text.textContent = names[index];
-        button.setAttribute('class', 'btn');
+        button.classList.add('btn');
         button.textContent = 'X';
         button.addEventListener('click', removeNameInArray);
         text.addEventListener('click', editValue);
