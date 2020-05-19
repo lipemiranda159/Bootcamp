@@ -9,28 +9,47 @@ function start() {
 }
 
 function updateElementsInHtml() {
-    let div = document.querySelector('.list');
-    div.innerHTML = '';
-
-    for (let index = 0; index < names.length; index++) {
-
-        let ul = document.createElement('ul');
-        let li = document.createElement('li');
+    function createButton(index) {
         let button = document.createElement('button');
-        let text = document.createElement('h5');
-        text.classList.add('btn-text');
-        text.textContent = names[index];
         button.classList.add('btn');
         button.textContent = 'X';
         button.addEventListener('click', removeNameInArray);
-        text.addEventListener('click', editValue);
+        button.id = index;
+        return button;
+    }
 
+    function createText(value) {
+        let text = document.createElement('h5');
+        text.classList.add('btn-text');
+        text.textContent = value;
+        text.addEventListener('click', editValue);
+        return text;
+    }
+
+    function removeNameInArray(event) {
+        preventDefault(event);
+        names.splice(event.target.id, 1);
+
+        updateElementsInHtml();
+
+    }
+
+
+    let div = document.querySelector('.list');
+    div.innerHTML = '';
+    let ul = document.createElement('ul');
+
+    for (let index = 0; index < names.length; index++) {
+
+        let li = document.createElement('li');
+        let button = createButton(index);
+        let text = createText(names[index]);
         li.append(button);
         li.append(text);
         ul.append(li);
-        div.append(ul);
 
     }
+    div.append(ul);
 
 
 }
@@ -57,15 +76,6 @@ function addNameInArray(event) {
 }
 
 
-function removeNameInArray(event) {
-    preventDefault(event);
-    let index = names.indexOf(getInputValue())
-    if (index >= 0) {
-        names = names.splice(index, 1);
-    }
-    updateElementsInHtml();
-
-}
 
 function preventDefault(event) {
     event.preventDefault();
