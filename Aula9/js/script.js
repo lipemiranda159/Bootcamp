@@ -48,6 +48,7 @@ function updateElementsInHtml() {
 
     let div = document.querySelector(".list");
     div.innerHTML = "";
+    globalInput.value = "";
     let ul = document.createElement("ul");
     let index = 0;
     names.forEach((name) => {
