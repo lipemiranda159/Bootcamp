@@ -7,7 +7,7 @@ window.addEventListener("load", () => {
     var form = document.querySelector("form");
     form.addEventListener("submit", () => {
         event.preventDefault();
-        !stateChange ? names.push(globalInput.value) : updatePosition();
+        !stateChange ? (names = [...names, globalInput.value]) : updatePosition();
         updateElementsInHtml();
     });
 });
@@ -19,12 +19,12 @@ function updatePosition() {
 }
 
 function updateElementsInHtml() {
-    function createButton() {
+    function createButton(index) {
         let button = document.createElement("button");
         button.classList.add("btn");
         button.textContent = "X";
         button.addEventListener("click", () => {
-            names.splice(event.target.id, 1);
+            names = names.filter((_, i) => i !== index);
 
             updateElementsInHtml();
         });
@@ -53,7 +53,7 @@ function updateElementsInHtml() {
     let index = 0;
     names.forEach((name) => {
         let li = document.createElement("li");
-        let button = createButton();
+        let button = createButton(index);
         let text = createText(name, index);
         li.append(button);
         li.append(text);
