@@ -1,0 +1,48 @@
+body {
+    background-color: #daa520;
+}
+
+.orientation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    background-color: white;
+    width: 55vw;
+}
+
+.container-div {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+}
+
+.countries {
+    padding: 20px;
+}
+
+.country {
+    height: 100px;
+}
+
+.favorite-countries {
+    padding: 20px;
+}
+
+.dev {
+    text-align: center;
+    margin-top: 10px;
+    background-color: black;
+    bottom: 0;
+    width: 100vw;
+}
+
+.footer {
+    color: white;
+    font-style: italic;
+}
