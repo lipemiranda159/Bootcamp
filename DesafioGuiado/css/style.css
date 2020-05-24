@@ -35,7 +35,7 @@ body {
 }
 
 .divContainer {
-    width: 20vw !important;
+    width: 30vw !important;
 }
 
 .dev {
@@ -51,7 +51,7 @@ body {
     font-style: italic;
 }
 
-span {
+#description {
     margin-top: 10px;
     display: flex;
     align-items: center;
