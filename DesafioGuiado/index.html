@@ -11,6 +11,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="./css/style.css" />
+    <script src="https://unpkg.com/blip-chat-widget" type="text/javascript">
+    </script>
+    <script>
+        (function() {
+            window.onload = function() {
+                new BlipChat()
+                    .withAppKey('Y29udGF0b2ZlbGlwZTpkMWY3MzdjZS0yZWU0LTRjODctYjZkMi1hMjlmZGU0MDRjNjU=')
+                    .withButton({
+                        "color": "teal",
+                        "icon": "./img/foto.jpg"
+                    })
+                    .withCustomCommonUrl('https://chat.blip.ai/')
+                    .build();
+            }
+        })();
+    </script>
+
     <title>Exercício guiado</title>
 </head>
 
