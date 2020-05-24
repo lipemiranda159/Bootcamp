@@ -1,0 +1,41 @@
+header {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-search {
+    width: 80vw;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+#buscar {
+    font-size: 1rem;
+    width: 7rem;
+}
+
+.container-main {
+    display: flex;
+    height: 50vh;
+    margin-left: 20px;
+    margin-right: 10px;
+    flex-direction: row;
+}
+
+.container-search-results {
+    border: 1px solid grey;
+    width: 50vw;
+}
+
+.container-statistics {
+    border: 1px solid grey;
+    width: 50vw;
+    height: 20vh;
+    margin-left: 10px;
+}
+
+.container-statistics h4,
+.container-search-results h4 {
+    margin-left: 5px;
+}
