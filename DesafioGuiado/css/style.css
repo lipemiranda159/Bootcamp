@@ -50,3 +50,11 @@ body {
     color: white;
     font-style: italic;
 }
+
+span {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 15px;
+}
