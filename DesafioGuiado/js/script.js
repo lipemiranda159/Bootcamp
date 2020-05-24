@@ -26,6 +26,9 @@ function render(div, countries, type = "grade") {
     ulCountries.classList.add("collection");
     const totalCountries = createText(`Países (${countries.length})`, "h5");
     div.appendChild(totalCountries);
+    const divContainer = document.createElement('div');
+    divContainer.classList.add('divContainer');
+    divContainer.appendChild(ulCountries);
     let totalPopulation = 0;
     countries.forEach((country) => {
         const liCountry = creatLi();
@@ -48,7 +51,7 @@ function render(div, countries, type = "grade") {
     );
     div.appendChild(totalPopulationH5);
     if (countries.length > 0) {
-        div.appendChild(ulCountries);
+        div.appendChild(divContainer);
     }
 }
 
