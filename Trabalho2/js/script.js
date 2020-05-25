@@ -9,8 +9,7 @@ actualPosition = 0;
 limitLength = 9;
 globalArrayUser = [];
 window.addEventListener("load", async() => {
-    globalUsers = await getUsersAsync();
-    console.log(globalUsers);
+    globalUsers =await getUsersAsync();
     countUser = document.querySelector("#countUser");
     statisticsShow = document.querySelector("#statistics");
     globalDivResults = document.querySelector(".divResults");
@@ -67,16 +66,18 @@ function updateView() {
     const ulUsers = document.createElement("ul");
     ulUsers.classList.add("collection");
     let users = 0;
-    globalUsers.forEach((user) => {
-        const liUser = creatLi();
-        const img = createImg(user.picture);
-        liUser.appendChild(img);
+    globalUsers.forEach((users) => {
+        users[actualPosition].forEach((user) => {
+                const liUser = creatLi();
+                const img = createImg(user.picture);
+                liUser.appendChild(img);
 
-        const spanUser = createSpan(`${user.name}, ${user.age} anos`);
-        liUser.appendChild(spanUser);
+                const spanUser = createSpan(`${user.name}, ${user.age} anos`);
+                liUser.appendChild(spanUser);
 
-        ulUsers.appendChild(liUser);
-        users++;
+                ulUsers.appendChild(liUser);
+                users++;
+        });
     });
     const statistics = updateStatistics();
     countUser.textContent = `${statistics.length} usuário(s) encontrado(s)`;
@@ -113,7 +114,7 @@ function updateStatistics() {
     let man = 0;
     let woman = 0;
     let totalAge = 0;
-    return globalUsers.reduce((user, currentUser) => {
+    return globalUsers[actualPosition].reduce((user, currentUser) => {
         if (user.gender) {
             user.gender === "female" ? woman++ : man++;
             currentUser.gender === "female" ? woman++ : man++;
@@ -127,7 +128,7 @@ function updateStatistics() {
             woman: woman,
             totalAge: totalAge,
             avgAge: (totalAge / globalUsers.length).toFixed(2),
-            length: globalUsers.length,
+            length: globalUsers[actualPosition].length,
         };
     });
 }
@@ -152,14 +153,17 @@ async function getUsersAsync() {
             };
         })
         .reduce((acc, user) => {
-            if (globalArrayUser[0][pos]) {
+            if (globalArrayUser[0][pos] === undefined) {
+                globalArrayUser[0][pos] = [];
                 globalArrayUser[0][pos].push(acc);
                 globalArrayUser[0][pos].push(user);
             } else {
-                if (globalArrayUser.length >= limitLength) {
+                if (globalArrayUser[0][pos].length > limitLength) {
                     pos++;
-                }
-                globalArrayUser[pos].push(user);
+                    globalArrayUser[0][pos] = [];
+                } 
+                globalArrayUser[0][pos].push(user);
             }
+            return globalArrayUser;
         });
 }

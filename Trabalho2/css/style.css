@@ -44,7 +44,7 @@ header {
 .container-search-results {
     border: 1px solid grey;
     width: 50vw;
-    height: 200vh;
+    height: 950px;
 }
 
 .container-statistics {
@@ -61,4 +61,8 @@ header {
 
 .bold-number {
     text-decoration: wavy;
+}
+
+.search {
+    display: flex;
 }
