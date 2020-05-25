@@ -15,17 +15,36 @@ header {
     width: 7rem;
 }
 
+.collection {
+    border: none;
+}
+
+.collection .collection-item {
+    border: none;
+    padding: 5px 20px;
+}
+
+.collection-item .avatar {
+    height: 5px;
+}
+
+.collection-item {
+    padding-bottom: 2px;
+}
+
 .container-main {
     display: flex;
     height: 50vh;
     margin-left: 20px;
     margin-right: 10px;
     flex-direction: row;
+    position: absolute;
 }
 
 .container-search-results {
     border: 1px solid grey;
     width: 50vw;
+    height: 200vh;
 }
 
 .container-statistics {
@@ -38,4 +57,8 @@ header {
 .container-statistics h4,
 .container-search-results h4 {
     margin-left: 5px;
+}
+
+.bold-number {
+    text-decoration: wavy;
 }
