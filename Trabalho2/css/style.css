@@ -8,6 +8,9 @@ header {
   margin-left: 20px;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
 }
 
 #buscar {
@@ -54,6 +57,11 @@ header {
   margin-left: 10px;
 }
 
+.search-icon {
+  padding-top: 20000px !important;
+  border-radius: 100px;
+}
+
 .container-statistics h4,
 .container-search-results h4 {
   margin-left: 5px;
@@ -65,4 +73,7 @@ header {
 
 .search {
   display: flex;
+  width: 50vw;
+  border: 1px solid grey;
+  border-radius: 1000px;
 }
