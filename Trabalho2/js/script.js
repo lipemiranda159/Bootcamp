@@ -9,8 +9,9 @@ actualPosition = 0;
 limitLength = 9;
 globalArrayUser = [];
 allUsers = [];
-searching = false;
+useCompletArray = false;
 globalLever = null;
+generalStatistics = false;
 
 window.addEventListener("load", async () => {
   globalUsers = await getUsersAsync();
@@ -26,13 +27,13 @@ window.addEventListener("load", async () => {
       globalButton.disabled = false;
     } else {
       globalButton.disabled = true;
-      searching = false;
+      useCompletArray = false;
       globalUsers = await getUsersAsync();
       render();
     }
     if (event.code == "Enter") {
       globalUsers = allUsers.filter((user) => {
-        searching = true;
+        useCompletArray = true;
         return user.name.toLowerCase().includes(globalInput.value);
       });
       render();
@@ -84,11 +85,19 @@ function updateView() {
   const ulUsers = document.createElement("ul");
   ulUsers.classList.add("collection");
   let users = 0;
-  if (!searching) {
+  if (!useCompletArray) {
     globalUsers.forEach((users) => {
       users[actualPosition].forEach(createUsers);
     });
   } else globalUsers.forEach(createUsers);
+  showStatistics();
+  globalDivResults.appendChild(ulUsers);
+
+  let pagination = createPagination();
+  globalDivResults.appendChild(pagination);
+}
+
+function showStatistics() {
   const statistics = updateStatistics();
   countUser.textContent = `${statistics.length} usuário(s) encontrado(s)`;
   statisticsShow.textContent = "Estatísticas";
@@ -102,10 +111,6 @@ function updateView() {
   statisticsShow.appendChild(totalAges);
   let avgAges = createText(`Média das idades: ${statistics.avgAge}`);
   statisticsShow.appendChild(avgAges);
-  globalDivResults.appendChild(ulUsers);
-
-  let pagination = createPagination();
-  globalDivResults.appendChild(pagination);
 }
 
 function createSwithceStatistics() {
@@ -116,7 +121,26 @@ function createSwithceStatistics() {
   div.appendChild(level);
   const input = document.createElement("input");
   input.type = "checkbox";
+  input.addEventListener("change", (event) => {
+    if (event.target.checked) {
+      globalUsers = allUsers;
+      useCompletArray = true;
+      generalStatistics = true;
+      showStatistics();
+      globalUsers = globalArrayUser;
+      useCompletArray = false;
+      globalLever.checked = true;
+    } else {
+      globalUsers = globalArrayUser;
+      useCompletArray = false;
+      generalStatistics = false;
+      showStatistics();
+      useCompletArray = false;
+      globalLever.checked = false;
+    }
+  });
   globalLever = input;
+  level.checked = generalStatistics;
   level.appendChild(input);
   const span = document.createElement("span");
   span.classList.add("lever");
@@ -135,21 +159,21 @@ function createPagination() {
   ul.classList.add("pagination");
   const liLeftArrow = createArrow("chevron_left");
   liLeftArrow.addEventListener("click", () => {
-    if (actualPosition > 0 && !searching) {
+    if (actualPosition > 0 && !useCompletArray) {
       actualPosition--;
       render();
     }
   });
   ul.appendChild(liLeftArrow);
   let count = 0;
-  if (!searching) {
+  if (!useCompletArray) {
     globalUsers[0][actualPosition].forEach(eachUser);
   } else {
     globalUsers.forEach(eachUser);
   }
   const liRightArrow = createArrow("chevron_right");
   liRightArrow.addEventListener("click", () => {
-    if (actualPosition < globalUsers[0].length && !searching) {
+    if (actualPosition < globalUsers[0].length && !useCompletArray) {
       actualPosition++;
       render();
     }
@@ -214,7 +238,7 @@ function updateStatistics() {
       currentUser.gender === "female" ? woman++ : man++;
       totalAge += currentUser.age;
     }
-    const length = !searching
+    const length = !useCompletArray
       ? globalUsers[0][actualPosition].length
       : globalUsers.length;
     return {
@@ -228,7 +252,7 @@ function updateStatistics() {
   let man = 0;
   let woman = 0;
   let totalAge = 0;
-  if (!searching) {
+  if (!useCompletArray) {
     return globalUsers[0][actualPosition].reduce(generateStatistics);
   } else return globalUsers.reduce(generateStatistics);
 }
@@ -244,7 +268,8 @@ const toUser = (user, id) => {
 };
 
 async function getUsersAsync() {
-  searching = false;
+  useCompletArray = false;
+  generalStatistics = false;
   const usersObj = await fetch(
     "https://randomuser.me/api/?seed=javascript&results=100&nat=BR&noinfo"
   );
