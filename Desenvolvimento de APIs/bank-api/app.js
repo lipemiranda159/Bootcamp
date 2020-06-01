@@ -10,16 +10,22 @@ app.get("/health",(req, res) => {
 });
 
 app.post("/account", (req,res) =>{
+    
+    fs.readFile("accounts.json","utf8",(err, data) => {
+        let account = req.body;
 
-    fs.readFile("account.json","utf8",(err, data) => {
-        console.log(err);
         if (!err)
-        {
-            data = JSON.parse(data);
-            data.accounts.push(req.body);
+        { 
+            let json = JSON.parse(data);
+            accounts = { nextId: json.nextId+1, accounts: [...{id: json.nextId, ...account}]};
+            fs.writeFile("accounts.json", JSON.stringify(account), err =>{
+                console.log(err);
+            });
+
+        } else {
+            console.log('Error to read file');
         }
     });
-
     res.sendStatus(200);
 
     
@@ -28,5 +34,22 @@ app.post("/account", (req,res) =>{
 
 
 app.listen(3000, function(){
+    try {
+        fs.readFile("account.json","utf8",(err, data) => {
+            if (err)
+            {
+                const iniAccaunt = {
+                    nextId : 1,
+                    accounts : []
+                }
+
+                fs.writeFile("accounts.json", JSON.stringify(iniAccaunt), err =>{
+                    console.log(err);
+                });
+            }
+        });
+    }catch (err){
+        console.log(err);
+    }
     console.log("Started!");
 });
