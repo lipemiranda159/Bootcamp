@@ -139,8 +139,8 @@ async function getUsersAsync() {
     const users = await usersObj.json();
     let id = 0;
     let pos = 0;
-    globalArrayUserLenght = users.results.length / (limitLength + 1);
-    globalArrayUser = [new Array(globalArrayUserLenght)];
+    // globalArrayUserLenght = users.results.length / (limitLength + 1);
+    // globalArrayUser = [new Array(globalArrayUserLenght)];
     return users.results
         .map((user) => {
             return {
@@ -150,16 +150,5 @@ async function getUsersAsync() {
                 age: user.dob.age,
                 gender: user.gender,
             };
-        })
-        .reduce((acc, user) => {
-            if (globalArrayUser[0][pos]) {
-                globalArrayUser[0][pos].push(acc);
-                globalArrayUser[0][pos].push(user);
-            } else {
-                if (globalArrayUser.length >= limitLength) {
-                    pos++;
-                }
-                globalArrayUser[pos].push(user);
-            }
         });
 }
