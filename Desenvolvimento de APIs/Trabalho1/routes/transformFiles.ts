@@ -1,25 +1,32 @@
-import express, { NextFunction } from "express";
+import express, { NextFunction, text } from "express";
 import { promises } from "fs";
 
 const readFile = promises.readFile;
-const router = express.Router();
+const writeFile = promises.writeFile;
+export const transfromFileRouter = express.Router();
 
-router.use(function(err: Error, req: express.Request, res: express.Response, next: NextFunction) {
-  console.error(err.message);
-    res.status(500).send(err.message); // If shouldRedirect is not defined in our error, sends our original err data
-});
-
-
-router.get("/", (req, res, next) => {
-  try {
-    throw new Error("teste");
-
-    res.send("OK");
-  } catch (err) {
-    next(err);
+var errorHandler = function (req: express.Request, res: express.Response, next: NextFunction) {
+  console.log('LOGGED');
+  try{
+    next(); 
   }
+  catch(err){
+    console.log(err.message);
+  }
+};
+
+transfromFileRouter.use(errorHandler);
+
+
+
+transfromFileRouter.get("/generateFiles", async (_, res) => {
+  const stateData = await readFile("./files/Estados.json", "utf8");
+  const cityData = await readFile("./files/Cidades.json","utf8");
+  const datas = JSON.parse(stateData);
+  
+  res.send("Ok");  
 });
 
-router.get("/:code", (req, res) => {});
+transfromFileRouter.get("/:code", (req, res) => {});
 
-export default router;
+export default transfromFileRouter;
