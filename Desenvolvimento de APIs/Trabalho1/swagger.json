@@ -1,2 +1,26 @@
 {
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Bootcamp - Nodejs",
+    "description": "Project to bootcamp",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "paths": {
+      "/transformFiles": {
+        "get": {
+          "sumary": "Create UFs files",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      }
+    }
+  }
 }
