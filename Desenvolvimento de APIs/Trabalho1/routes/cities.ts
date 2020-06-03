@@ -15,8 +15,13 @@ export const citiesRouter = express.Router();
  */
 citiesRouter.get("/:uf", async (req, res) => {
   let { uf } = req.params;
-  let city = readFile(`${processedPath}/${uf}.json`, encoding);
+  console.log(req.params.uf);
+  let city = await readFile(
+    `${processedPath}/${uf.toUpperCase()}.json`,
+    encoding
+  );
   console.log(city);
+  res.send("Ok");
 });
 
 export default citiesRouter;
