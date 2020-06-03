@@ -2,22 +2,31 @@
   "openapi": "3.0.0",
   "info": {
     "version": "1.0.0",
-    "title": "Bootcamp - Nodejs",
-    "description": "Project to bootcamp",
-    "license": {
-      "name": "MIT",
-      "url": "https://opensource.org/licenses/MIT"
-    },
-    "consumes": ["application/json"],
-    "produces": ["application/json"],
-    "paths": {
-      "/transformFiles": {
-        "get": {
-          "sumary": "Create UFs files",
-          "responses": {
-            "200": {
-              "description": "OK"
-            }
+    "title": "NodeJs API - Challenge 1 Bootcamp",
+    "description": "Api develop for the first challenge of Bootcamp"
+  },
+  "servers": [
+    {
+      "url": "/",
+      "description": "Local Dev, or from Heroku"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Transform Files",
+      "description": "API for generate region files"
+    }
+  ],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/generateFiles": {
+      "get": {
+        "tags": ["Transform Files"],
+        "summary": "Generate region files",
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
