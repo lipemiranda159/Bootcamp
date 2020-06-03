@@ -41,6 +41,4 @@ transfromFileRouter.get("/generateFiles", async (_, res) => {
   res.send(states);
 });
 
-transfromFileRouter.get("/:code", (req, res) => {});
-
 export default transfromFileRouter;
