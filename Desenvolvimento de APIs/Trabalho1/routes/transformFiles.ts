@@ -24,10 +24,14 @@ var errorHandler = function (
 
 transfromFileRouter.use(errorHandler);
 /**
- * @route GET /transformfiles/generateFiles
- * @group Transform Files - Generate api files
- * @returns {object} 200 - An array of user info
- * @returns {Error}  default - Unexpected error
+ * @api [post] /generateFiles
+ * summary: Generate state files
+ * tags: [Transform File]
+ * responses:
+ *  "200":
+ *      description: "Notification created"
+ *  "500":
+ *      description: "Internal server error"
  */
 transfromFileRouter.get("/generateFiles", async (_, res) => {
   const stateData = await readFile(stateFile, encoding);

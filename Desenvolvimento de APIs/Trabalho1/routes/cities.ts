@@ -7,11 +7,22 @@ const encoding = "utf8";
 
 export const citiesRouter = express.Router();
 /**
- * @route GET /cities/:uf
- * @group Cities - Generate api files
- * @param {string} uf.path.required
- * @returns {Number} 200 - Count of cities of UF
- * @returns {Error}  default - Unexpected error
+ * @api [post] /cities
+ * summary: Send notification
+ * tags: [City]
+ * parameters: [
+ *  {
+ *      name: "uf",
+ *      type: "string",
+ *      in: "path",
+ *      required: true
+ *  }
+ * ]
+ * responses:
+ *  "200":
+ *      description: "Notification created"
+ *  "500":
+ *      description: "Internal server error"
  */
 citiesRouter.get("/:uf", async (req, res) => {
   let { uf } = req.params;
