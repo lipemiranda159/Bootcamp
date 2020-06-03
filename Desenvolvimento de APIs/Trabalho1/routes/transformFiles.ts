@@ -23,7 +23,12 @@ var errorHandler = function (
 };
 
 transfromFileRouter.use(errorHandler);
-
+/**
+ * @route GET /transformfiles/generateFiles
+ * @group Transform Files - Generate api files
+ * @returns {object} 200 - An array of user info
+ * @returns {Error}  default - Unexpected error
+ */
 transfromFileRouter.get("/generateFiles", async (_, res) => {
   const stateData = await readFile(stateFile, encoding);
   const cityData = await readFile(cityFile, encoding);
