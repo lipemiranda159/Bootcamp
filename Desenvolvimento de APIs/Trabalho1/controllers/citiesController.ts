@@ -1,16 +1,18 @@
 import { Request, Response } from "express";
-import { promises } from "fs";
-
-const readFile = promises.readFile;
+import FileService from "../Services/FileService";
 const processedPath = "./files/processed";
-const encoding = "utf8";
+const filesPath = "./files";
+
+const fileService = new FileService();
 
 class CitiesController {
   async getUfCitiesLength(request: Request, response: Response) {
     let { uf } = request.params;
-    let city = await readFile(`${processedPath}/${uf}.json`, encoding);
+    let city = await fileService.getFileData(`${processedPath}/${uf}.json`);
     response.status(200).send({ length: city.length });
   }
+
+  async getTopFiveStates(request: Request, response: Response) {}
 }
 
 export default CitiesController;
