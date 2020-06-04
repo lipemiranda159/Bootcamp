@@ -51,6 +51,18 @@
           }
         ]
       }
+    },
+
+    "/cities/count/topFiveStates": {
+      "get": {
+        "tags": ["Citites"],
+        "summary": "Get top five states by number cities",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   }
 }
