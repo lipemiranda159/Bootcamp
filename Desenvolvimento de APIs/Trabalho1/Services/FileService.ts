@@ -6,7 +6,7 @@ const writeFile = promises.writeFile;
 
 class FileService {
   public static async getFileData(fileName: string) {
-    return await readFile(fileName, Constants.encoding);
+    return JSON.parse(await readFile(fileName, Constants.encoding));
   }
 
   public static async writeFileData(fileName: string, data: string) {
