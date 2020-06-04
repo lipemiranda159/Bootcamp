@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import FileService from "../Services/FileService";
+import ProcessFileService from "../Services/ProcessFileService";
 const processedPath = "./files/processed";
-const filesPath = "./files";
 
 class CitiesController {
   async getUfCitiesLength(request: Request, response: Response) {
@@ -16,15 +16,7 @@ class CitiesController {
 
   async getTopFiveStates(request: Request, response: Response) {
     try {
-      let states = await FileService.getFileData(`${filesPath}/Estados.json`);
-      let statesCities: any[] = [];
-      const promises = states.map(async (state: any) => {
-        let cities = await FileService.getFileData(
-          `${processedPath}/${state.Sigla}.json`
-        );
-        statesCities.push({ Uf: state.Sigla, CountCities: cities.length });
-      });
-      await Promise.all(promises);
+      let statesCities = await ProcessFileService.getCitesCount();
       statesCities = statesCities
         .sort(function (a, b) {
           return b.CountCities - a.CountCities;
