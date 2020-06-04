@@ -30,6 +30,27 @@
           }
         }
       }
+    },
+    "/cities/{uf}": {
+      "get": {
+        "tags": ["Citites"],
+        "summary": "Get cities information",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "parameters": [
+          {
+            "name": "uf",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
     }
   }
 }
