@@ -20,10 +20,8 @@ var errorHandler = function (
 transfromFileRouter.use(errorHandler);
 
 transfromFileRouter.get("/generateFiles", async (_, res) => {
-  const stateData = await FileService.getFileData(Constants.stateFile);
-  const cityData = await FileService.getFileData(Constants.cityFile);
-  const states = JSON.parse(stateData);
-  const cities = JSON.parse(cityData);
+  const states = await FileService.getFileData(Constants.stateFile);
+  const cities = await FileService.getFileData(Constants.cityFile);
 
   states.forEach(async (state: any) => {
     let data = cities.filter((city: any) => city.Estado === state.ID);
