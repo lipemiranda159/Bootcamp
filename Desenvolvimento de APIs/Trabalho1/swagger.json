@@ -63,6 +63,17 @@
           }
         }
       }
+    },
+    "/cities/count/lastFiveStates": {
+      "get": {
+        "tags": ["Citites"],
+        "summary": "Get last five states by number cities",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   }
 }

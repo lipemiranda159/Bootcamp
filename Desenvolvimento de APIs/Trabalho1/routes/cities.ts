@@ -7,5 +7,5 @@ const citiesController = new CitiesController();
 
 citiesRouter.get("/:uf", citiesController.getUfCitiesLength);
 citiesRouter.get("/count/topFiveStates", citiesController.getTopFiveStates);
-
+citiesRouter.get("/count/LastFiveStates", citiesController.getLastFiveStates);
 export default citiesRouter;
