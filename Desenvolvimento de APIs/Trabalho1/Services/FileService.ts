@@ -1,11 +1,16 @@
 import { promises } from "fs";
+import Constants from "../Constants";
 
 const readFile = promises.readFile;
-const encoding = "utf8";
+const writeFile = promises.writeFile;
 
 class FileService {
-  public async getFileData(fileName: string) {
-    return await readFile(fileName, encoding);
+  public static async getFileData(fileName: string) {
+    return await readFile(fileName, Constants.encoding);
+  }
+
+  public static async writeFileData(fileName: string, data: string) {
+    await writeFile(fileName, data);
   }
 }
 
