@@ -5,13 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.transfromFileRouter = void 0;
 const express_1 = __importDefault(require("express"));
-const fs_1 = require("fs");
-const readFile = fs_1.promises.readFile;
-const writeFile = fs_1.promises.writeFile;
-const stateFile = "./files/Estados.json";
-const cityFile = "./files/Cidades.json";
-const processedPath = "./files/processed";
-const encoding = "utf8";
+const Constants_1 = __importDefault(require("../Constants"));
+const FileService_1 = __importDefault(require("../Services/FileService"));
 exports.transfromFileRouter = express_1.default.Router();
 var errorHandler = function (req, res, next) {
     console.log("LOGGED");
@@ -24,13 +19,11 @@ var errorHandler = function (req, res, next) {
 };
 exports.transfromFileRouter.use(errorHandler);
 exports.transfromFileRouter.get("/generateFiles", async (_, res) => {
-    const stateData = await readFile(stateFile, encoding);
-    const cityData = await readFile(cityFile, encoding);
-    const states = JSON.parse(stateData);
-    const cities = JSON.parse(cityData);
+    const states = await FileService_1.default.getFileData(Constants_1.default.stateFile);
+    const cities = await FileService_1.default.getFileData(Constants_1.default.cityFile);
     states.forEach(async (state) => {
         let data = cities.filter((city) => city.Estado === state.ID);
-        await writeFile(`${processedPath}/${state.Sigla}.json`, JSON.stringify(data));
+        await FileService_1.default.writeFileData(`${Constants_1.default.processedPath}/${state.Sigla}.json`, JSON.stringify(data));
     });
     res.send(states);
 });
