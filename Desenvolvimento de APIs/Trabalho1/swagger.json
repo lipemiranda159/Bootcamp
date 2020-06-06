@@ -74,6 +74,50 @@
           }
         }
       }
+    },
+    "/cities/orderedDesc/cityNames": {
+      "get": {
+        "tags": ["Citites"],
+        "summary": "Get names that are bigger than others",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/cities/orderedAsc/cityNames": {
+      "get": {
+        "tags": ["Citites"],
+        "summary": "Get names that are smaller than others",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/cities/orderedDesc/cityName": {
+      "get": {
+        "tags": ["Citites"],
+        "summary": "Get the bigest",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/cities/orderedAsc/cityName": {
+      "get": {
+        "tags": ["Citites"],
+        "summary": "Get the smallest name",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   }
 }
