@@ -1,12 +1,13 @@
 import { promises } from "fs";
+import path from "path";
 import Constants from "../constants/Constants";
+import data from "../data/grades.json";
 
-const readFile = promises.readFile;
 const writeFile = promises.writeFile;
 
 class FileService {
-  public static async getFileData() {
-    return JSON.parse(await readFile(Constants.gradesFile, Constants.encoding));
+  public static getFileData() {
+    return data;
   }
 
   public static async writeFileData(data: string) {
