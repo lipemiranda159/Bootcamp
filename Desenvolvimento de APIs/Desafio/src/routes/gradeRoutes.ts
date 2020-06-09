@@ -3,7 +3,7 @@ import GradeController from "../controllers/GradeController";
 
 const gradeRouter = express.Router();
 const gradeController = new GradeController();
-
+gradeRouter.get("/grade/:id", gradeController.show);
 gradeRouter.post("/new", gradeController.createNewGrade);
 gradeRouter.put("/update", gradeController.updateGrade);
 gradeRouter.delete("/delete", gradeController.deleteGrade);
