@@ -93,9 +93,9 @@ class GradeController {
   async getAvgGrade(req: Request, res: Response) {
     try {
       const grades = FileService.getFileData();
-      const { student, type } = req.body;
+      const { subject, type } = req.body;
       const mappedGrade = grades.grades
-        .filter((grade) => grade.student === student && grade.type === type)
+        .filter((grade) => grade.subject === subject && grade.type === type)
         .map((grade) => grade.value);
       const length = mappedGrade.length;
       const total = mappedGrade.reduce((acc, cur) => acc + cur);
@@ -107,9 +107,9 @@ class GradeController {
   async getTopThreeGrades(req: Request, res: Response) {
     try {
       const grades = FileService.getFileData();
-      const { student, type } = req.body;
+      const { subject, type } = req.body;
       const mappedGrade = grades.grades
-        .filter((grade) => grade.student === student && grade.type === type)
+        .filter((grade) => grade.subject === subject && grade.type === type)
         .map((grade) => {
           return {
             value: grade.value,
@@ -118,7 +118,9 @@ class GradeController {
           };
         });
 
-      res.send(ArrayOrderService.orderByNumberDescending(mappedGrade).slice(3));
+      res.send(
+        ArrayOrderService.orderByNumberDescending(mappedGrade).slice(0, 4)
+      );
     } catch (err) {
       res.status(500).send(err);
     }
