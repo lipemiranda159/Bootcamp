@@ -18,7 +18,16 @@ var errorHandler = function (
 };
 
 transfromFileRouter.use(errorHandler);
-
+/**
+ * @api [post] /generateFiles
+ * summary: Generate state files
+ * tags: [Transform File]
+ * responses:
+ *  "200":
+ *      description: "Notification created"
+ *  "500":
+ *      description: "Internal server error"
+ */
 transfromFileRouter.get("/generateFiles", async (_, res) => {
   const states = await FileService.getFileData(Constants.stateFile);
   const cities = await FileService.getFileData(Constants.cityFile);
