@@ -5,7 +5,7 @@ function App() {
   const [dates, setDates] = useState([]);
 
   const handleClick = () => {
-    var datesObj = Object.assign(dates);
+    var datesObj = Object.assign([], dates);
     var options = {
       weekday: "long",
       year: "numeric",
@@ -28,7 +28,11 @@ function App() {
     <div className="App">
       <header className="App-header"></header>
       <button onClick={handleClick}>Log</button>
-      {console.log(dates)}
+      <ul>
+        {dates.map((date) => {
+          return <li key={date}>{date}</li>;
+        })}
+      </ul>
     </div>
   );
 }
