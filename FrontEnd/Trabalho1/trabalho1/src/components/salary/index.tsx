@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent, InputHTMLAttributes } from "react";
 import InputValue from "../input";
 
 const Salary = () => {

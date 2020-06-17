@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState, ChangeEvent, InputHTMLAttributes } from "react";
 import "./App.css";
 import Header from "./components/header";
 import Salary from "./components/salary";
 import Values from "./components/values";
 import Result from "./components/result";
 import Bar from "./components/bar";
+import salaryStatey from "./models/salaryState";
+import SalaryState from "./models/salaryState";
 
-function App() {
+const App = () => {
+  const [salary, setSalary] = useState<SalaryState>();
+
+  const handleChangeSalary = (event: ChangeEvent<HTMLInputElement>) => {};
+
   return (
     <div className="main">
       <Header />
@@ -23,6 +29,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;
