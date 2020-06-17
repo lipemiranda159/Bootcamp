@@ -1,0 +1,10 @@
+.fieldset {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  width: 90vw;
+}
+
+.label {
+  font-size: medium;
+}
