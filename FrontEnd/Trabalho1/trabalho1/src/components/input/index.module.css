@@ -1,8 +1,7 @@
 .fieldset {
-  display: flex;
-  flex-direction: column;
   border: none;
-  width: 90vw;
+  margin: 0px;
+  padding: 0px;
 }
 
 .label {
