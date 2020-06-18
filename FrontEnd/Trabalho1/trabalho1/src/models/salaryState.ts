@@ -1,5 +1,7 @@
 class SalaryState {
   fullSalary!: number;
+  InssPercent!: number;
+  IprfPercent!: number;
   BaseInss!: string;
   DescInss!: string;
   BaseIprf!: string;
@@ -11,6 +13,8 @@ class SalaryState {
     } else {
       this.fullSalary = value;
     }
+    this.InssPercent = 0;
+    this.IprfPercent = 0;
   }
 }
 

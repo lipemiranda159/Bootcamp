@@ -36,8 +36,8 @@ const App = () => {
       <Result salary={salary} />
       <div className="row">
         <div className="col s12 bar">
-          <Bar value="50" color="black" />
-          <Bar value="50" color="black" />
+          <Bar value={salary.InssPercent.toString()} color="#e67e22" />
+          <Bar value={salary.IprfPercent.toString()} color="#c0392b" />
           <Bar value="100" color="#16a085" />
         </div>
       </div>

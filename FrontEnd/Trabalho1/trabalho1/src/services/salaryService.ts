@@ -66,12 +66,18 @@ class SalaryService {
 
     const formater = Intl.NumberFormat("pt-br");
     let salaryState = new SalaryState(fullSalary);
+    salaryState.InssPercent = this.round((discountINSS * 100) / fullSalary);
+    salaryState.IprfPercent = this.round((discountIRPF * 100) / fullSalary);
+
     salaryState.BaseInss = `R$ ${formater.format(baseINSS)}`;
     salaryState.BaseIprf = `R$ ${formater.format(baseIRPF)}`;
-    salaryState.DescInss = `R$ ${formater.format(discountINSS)}`;
-    salaryState.DescIprf = `R$ ${formater.format(discountIRPF)}`;
+    salaryState.DescInss = `R$ ${formater.format(discountINSS)} (${
+      salaryState.InssPercent
+    }%)`;
+    salaryState.DescIprf = `R$ ${formater.format(discountIRPF)} (${
+      salaryState.IprfPercent
+    }%)`;
     salaryState.SalLiq = `R$ ${formater.format(netSalary)}`;
-
     return salaryState;
   }
 }
