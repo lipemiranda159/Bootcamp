@@ -1,23 +1,26 @@
-import React, { useState, ChangeEvent, InputHTMLAttributes } from "react";
+import React, { useState, ChangeEvent } from "react";
 import "./App.css";
 import Header from "./components/header";
 import Salary from "./components/salary";
 import Values from "./components/values";
 import Result from "./components/result";
 import Bar from "./components/bar";
-import salaryStatey from "./models/salaryState";
 import SalaryState from "./models/salaryState";
 
 const App = () => {
-  const [salary, setSalary] = useState<SalaryState>();
+  const [salary, setSalary] = useState<SalaryState>(new SalaryState(0));
 
-  const handleChangeSalary = (event: ChangeEvent<HTMLInputElement>) => {};
+  const handleChangeSalary = (event: ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.value);
+    const salaryValue = parseInt(event.target.value);
+    setSalary(new SalaryState(salaryValue));
+  };
 
   return (
     <div className="main">
       <Header />
       <div className="row">
-        <Salary />
+        <Salary setSalary={handleChangeSalary} />
       </div>
       <Values />
       <Result />

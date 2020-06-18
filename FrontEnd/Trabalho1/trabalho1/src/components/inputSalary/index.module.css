@@ -1,0 +1,9 @@
+.fieldset {
+  border: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.label {
+  font-size: medium;
+}
