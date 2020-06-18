@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import css from "./index.module.css";
+import Constants from "../../constants/Constants";
 
 const InputValue: React.FC<{
   id: string;
@@ -8,14 +9,16 @@ const InputValue: React.FC<{
   text: string;
   value: string;
 }> = ({ id, type, disabled, text, value }) => {
+  const { descInssColor, descIprfColor, idDescInss, idDescIprf } = Constants;
+
   useEffect(() => {
     if (value !== "") {
       const input = document.getElementById(id);
       if (input) {
-        if (id === "DescInss") {
-          input.style.color = "#e67e22";
-        } else if (id === "DescIprf") {
-          input.style.color = "#c0392b";
+        if (id === idDescInss) {
+          input.style.color = descInssColor;
+        } else if (id === idDescIprf) {
+          input.style.color = descIprfColor;
         }
       }
     }

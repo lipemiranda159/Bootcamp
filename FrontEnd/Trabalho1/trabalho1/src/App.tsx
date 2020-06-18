@@ -9,6 +9,8 @@ import SalaryState from "./models/salaryState";
 import { SalaryService } from "./services/salaryService";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import Constants from "./constants/Constants";
+import { constants } from "buffer";
 
 const App = () => {
   const [salary, setSalary] = useState<SalaryState>(new SalaryState(0));
@@ -36,9 +38,15 @@ const App = () => {
       <Result salary={salary} />
       <div className="row">
         <div className="col s12 bar">
-          <Bar value={salary.InssPercent.toString()} color="#e67e22" />
-          <Bar value={salary.IprfPercent.toString()} color="#c0392b" />
-          <Bar value="100" color="#16a085" />
+          <Bar
+            value={salary.InssPercent.toString()}
+            color={Constants.descInssColor}
+          />
+          <Bar
+            value={salary.IprfPercent.toString()}
+            color={Constants.descIprfColor}
+          />
+          <Bar value="100" color={Constants.colorResult} />
         </div>
       </div>
     </div>

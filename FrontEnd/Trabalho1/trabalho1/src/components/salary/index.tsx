@@ -1,15 +1,17 @@
 import React from "react";
 import InputSalary from "../inputSalary";
+import Constants from "../../constants/Constants";
 
 const Salary = (props: any) => {
+  const { idSalary, typeSalary, textSalary } = Constants;
   return (
     <div className="col s12">
       <div className="input-field col s12">
         <InputSalary
-          id="salary"
-          type="number"
+          id={idSalary}
+          type={typeSalary}
           disabled={false}
-          text="Salário Bruto"
+          text={textSalary}
           setSalary={props.setSalary}
         />
       </div>

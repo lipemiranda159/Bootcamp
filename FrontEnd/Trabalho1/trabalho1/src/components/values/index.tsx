@@ -1,44 +1,56 @@
 import React from "react";
 import InputValue from "../input";
 import SalaryState from "../../models/salaryState";
+import Constants from "../../constants/Constants";
 
 const Values: React.FC<{ salary: SalaryState }> = ({ salary }) => {
+  const {
+    inputType,
+    idBaseInss,
+    textBaseInss,
+    idDescInss,
+    textDescInss,
+    idBaseIprf,
+    textBaseIprf,
+    idDescIprf,
+    textDescIprf,
+  } = Constants;
   return (
     <div className="row">
       <div className="col s12">
         <div className="input-field col s3">
           <InputValue
-            id="BaseInss"
-            type="text"
+            id={idBaseInss}
+            type={inputType}
             disabled={true}
-            text="Base INSS"
+            text={textBaseInss}
             value={salary.BaseInss}
           />
         </div>
         <div className="input-field col s3">
           <InputValue
-            id="DescInss"
-            type="text"
+            id={idDescInss}
+            type={inputType}
             disabled={true}
-            text="Deconto INSS"
+            text={textDescInss}
             value={salary.DescInss}
           />
         </div>
         <div className="input-field col s3">
           <InputValue
-            id="BaseIprf"
-            type="text"
+            id={idBaseIprf}
+            type={inputType}
             disabled={true}
-            text="Base IPRF"
+            text={textBaseIprf}
             value={salary.BaseIprf}
           />
         </div>
         <div className="input-field col s3">
           <InputValue
-            id="DescIprf"
-            type="text"
+            id={idDescIprf}
+            type={inputType}
             disabled={true}
-            text="Desconto IPRF"
+            text={textDescIprf}
             value={salary.DescIprf}
           />
         </div>
