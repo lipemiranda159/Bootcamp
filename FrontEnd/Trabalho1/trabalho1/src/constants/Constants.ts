@@ -12,7 +12,7 @@ export default class Constants {
   public static readonly textDescIprf = "Desconto IPRF";
   public static readonly idSalaryLiq = "SalaryLiq";
   public static readonly textSalaryLiq = "Salário Líquido";
-  public static readonly colorResult = "#16a085";
+  public static readonly colorResult = "#2a9d8f";
   public static readonly idSalary = "salary";
   public static readonly typeSalary = "number";
   public static readonly textSalary = "Salário Bruto";
