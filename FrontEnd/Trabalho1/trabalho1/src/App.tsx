@@ -36,8 +36,9 @@ const App = () => {
       <Result salary={salary} />
       <div className="row">
         <div className="col s12 bar">
-          <Bar value="100" color="blue" />
           <Bar value="50" color="black" />
+          <Bar value="50" color="black" />
+          <Bar value="100" color="#16a085" />
         </div>
       </div>
     </div>
