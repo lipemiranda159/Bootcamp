@@ -10,7 +10,6 @@ import { SalaryService } from "./services/salaryService";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import Constants from "./constants/Constants";
-import { constants } from "buffer";
 
 const App = () => {
   const [salary, setSalary] = useState<SalaryState>(new SalaryState(0));

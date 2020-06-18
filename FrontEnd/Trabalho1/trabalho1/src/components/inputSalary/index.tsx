@@ -10,18 +10,27 @@ const InputSalary: React.FC<{
 }> = ({ id, type, disabled, text, setSalary }) => {
   return (
     <fieldset className={css.fieldset}>
-      <label htmlFor={id} className={css.label}>
-        {text}
-      </label>
       <input
         id={id}
         type={type}
         disabled={disabled}
         onChange={setSalary}
-        required
+        required={true}
         pattern="[0-9]+$"
         min="1"
+        className="validate"
       />
+      <label htmlFor={id} className={css.label}>
+        {text}
+      </label>
+
+      <span
+        className="helper-text"
+        data-error="Só é aceito números"
+        data-success="right"
+      >
+        Favor digitar o valor do seu salário
+      </span>
     </fieldset>
   );
 };
