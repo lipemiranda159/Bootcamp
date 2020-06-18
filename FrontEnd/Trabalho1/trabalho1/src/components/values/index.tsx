@@ -1,7 +1,8 @@
 import React from "react";
 import InputValue from "../input";
+import SalaryState from "../../models/salaryState";
 
-const Values = () => {
+const Values: React.FC<{ salary: SalaryState }> = ({ salary }) => {
   return (
     <div className="row">
       <div className="col s12">
@@ -11,6 +12,7 @@ const Values = () => {
             type="text"
             disabled={true}
             text="Base INSS"
+            value={salary.BaseInss}
           />
         </div>
         <div className="input-field col s3">
@@ -19,6 +21,7 @@ const Values = () => {
             type="text"
             disabled={true}
             text="Deconto INSS"
+            value={salary.DescInss}
           />
         </div>
         <div className="input-field col s3">
@@ -27,6 +30,7 @@ const Values = () => {
             type="text"
             disabled={true}
             text="Base IPRF"
+            value={salary.BaseIprf}
           />
         </div>
         <div className="input-field col s3">
@@ -35,6 +39,7 @@ const Values = () => {
             type="text"
             disabled={true}
             text="Desconto IPRF"
+            value={salary.DescIprf}
           />
         </div>
       </div>

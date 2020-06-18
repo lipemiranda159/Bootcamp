@@ -1,7 +1,8 @@
 import React from "react";
 import InputValue from "../input";
+import SalaryState from "../../models/salaryState";
 
-const Result = () => {
+const Result: React.FC<{ salary: SalaryState }> = ({ salary }) => {
   return (
     <div className="row">
       <div className="col s12">
@@ -11,6 +12,7 @@ const Result = () => {
             type="text"
             disabled={true}
             text="Salário Líquido"
+            value={salary.SalLiq}
           />
         </div>
       </div>

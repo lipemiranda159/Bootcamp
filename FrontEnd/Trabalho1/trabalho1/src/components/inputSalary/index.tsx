@@ -13,7 +13,15 @@ const InputSalary: React.FC<{
       <label htmlFor={id} className={css.label}>
         {text}
       </label>
-      <input id={id} type={type} disabled={disabled} onChange={setSalary} />
+      <input
+        id={id}
+        type={type}
+        disabled={disabled}
+        onChange={setSalary}
+        required
+        pattern="[0-9]+$"
+        min="1"
+      />
     </fieldset>
   );
 };

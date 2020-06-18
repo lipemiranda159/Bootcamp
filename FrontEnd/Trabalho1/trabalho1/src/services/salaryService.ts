@@ -1,4 +1,5 @@
 import inssTable from "./model/inssTable";
+import SalaryState from "../models/salaryState";
 
 class SalaryService {
   private static round(value: number) {
@@ -63,13 +64,15 @@ class SalaryService {
 
     const netSalary = baseINSS - discountINSS - discountIRPF;
 
-    return {
-      baseINSS,
-      discountINSS,
-      baseIRPF,
-      discountIRPF,
-      netSalary,
-    };
+    const formater = Intl.NumberFormat("pt-br");
+    let salaryState = new SalaryState(fullSalary);
+    salaryState.BaseInss = `R$ ${formater.format(baseINSS)}`;
+    salaryState.BaseIprf = `R$ ${formater.format(baseIRPF)}`;
+    salaryState.DescInss = `R$ ${formater.format(discountINSS)}`;
+    salaryState.DescIprf = `R$ ${formater.format(discountIRPF)}`;
+    salaryState.SalLiq = `R$ ${formater.format(netSalary)}`;
+
+    return salaryState;
   }
 }
 export { SalaryService };
