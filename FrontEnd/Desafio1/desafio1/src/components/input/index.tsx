@@ -5,15 +5,10 @@ const Input: React.FC<{ inputId: string; label: string }> = ({
   label,
 }) => {
   return (
-    <div className="input-field col s3">
+    <div className="input-field col s4">
       <label htmlFor={inputId}>{label}</label>
 
-      <input
-        placeholder="Placeholder"
-        id={inputId}
-        type="number"
-        className="validate"
-      />
+      <input id={inputId} type="number" className="validate" />
     </div>
   );
 };

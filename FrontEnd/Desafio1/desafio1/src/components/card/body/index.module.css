@@ -1,0 +1,11 @@
+.body {
+  display: flex;
+  flex-direction: row;
+}
+
+.id {
+  margin-right: 10px;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+}
