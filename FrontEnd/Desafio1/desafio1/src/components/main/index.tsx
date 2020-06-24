@@ -6,34 +6,28 @@ import CalcService from "../../Service/CalcService";
 
 const Main: React.FC<{ state: ValueState }> = ({ state }) => {
   const { InitAmount, Period, TaxMonth } = state;
-  const initalState: ValueState[] = [];
-  const [cardsValues, setCardsValues] = useState(initalState);
+  const initalState: number[] = [0];
+  const [period, setPeriod] = useState(initalState);
   const handleClickAdd = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    const auxValues = Object.assign([], cardsValues);
-    auxValues.push({
-      InitAmount,
-      Period,
-      TaxMonth,
-    });
-
-    setCardsValues(auxValues);
+    const auxValues = Object.assign([], period);
+    auxValues.push(period.length);
+    setPeriod(auxValues);
   };
   return (
     <div>
       <div className="row">
-        {cardsValues.map((_, index) => {
-          const amount = CalcService.GetMontant(
-            InitAmount,
-            TaxMonth,
-            cardsValues.length
-          );
-          const taxValue = CalcService.GetTax(InitAmount, amount);
+        {period.map((month) => {
+          if (month === 0) return;
+          const amount = CalcService.GetMontant(InitAmount, TaxMonth, month);
+          const diff = TaxMonth > 0 ? InitAmount + amount : InitAmount - amount;
+          const taxValue = CalcService.GetTax(InitAmount, diff);
           return (
             <Card
-              key={index}
-              amount={TaxMonth > 0 ? InitAmount + amount : InitAmount - amount}
-              tax={taxValue}
-              totalAmount={amount}
+              key={month}
+              month={month}
+              amount={diff.toFixed(2)}
+              tax={taxValue.toFixed(2)}
+              totalAmount={amount.toFixed(2)}
             />
           );
         })}

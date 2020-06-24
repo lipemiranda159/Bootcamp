@@ -2,13 +2,16 @@ import React from "react";
 import css from "./index.module.css";
 
 const BodyCard: React.FC<{
-  totalAmount: number;
-  amount: number;
-  tax: number;
-}> = ({ totalAmount, amount, tax }) => {
+  totalAmount: string;
+  amount: string;
+  tax: string;
+  month: number;
+}> = ({ totalAmount, amount, tax, month }) => {
   return (
     <div className={css.body}>
-      <div className={css.id}>1</div>
+      <div className={css.id}>
+        <h5> {month}</h5>
+      </div>
       <div>
         <h6>{totalAmount}</h6>
         <h6>{amount}</h6>
