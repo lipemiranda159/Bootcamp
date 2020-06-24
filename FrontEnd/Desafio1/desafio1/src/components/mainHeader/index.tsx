@@ -1,11 +1,14 @@
 import React from "react";
 import Input from "../input";
-import ValueState from "../../model/ValueState";
 
-const MainHeader: React.FC<{ setState: any; state: ValueState }> = ({
-  setState,
-  state,
-}) => {
+const MainHeader: React.FC<{
+  setInitAmount: any;
+  InitAmount: number;
+  setTax: any;
+  Tax: number;
+  setPeriod: any;
+  Period: Number[];
+}> = ({ setInitAmount, InitAmount, setTax, Tax, setPeriod, Period }) => {
   return (
     <div className="row">
       <div className="col s12">
@@ -13,20 +16,20 @@ const MainHeader: React.FC<{ setState: any; state: ValueState }> = ({
           <Input
             inputId="value"
             label="Montante inicial"
-            state={state}
-            setState={setState}
+            state={InitAmount}
+            setState={setInitAmount}
           />
           <Input
             inputId="taxMonth"
             label="Taxa de juros mensal"
-            setState={setState}
-            state={state}
+            setState={setTax}
+            state={Tax}
           />
           <Input
             inputId="period"
             label="Período"
-            state={state}
-            setState={setState}
+            state={Period}
+            setState={setPeriod}
           />
         </div>
       </div>
