@@ -20,22 +20,27 @@ const Main: React.FC<{ state: ValueState }> = ({ state }) => {
   };
   return (
     <div>
-      {cardsValues.map((_) => {
-        const amount = CalcService.GetMontant(
-          InitAmount,
-          TaxMonth,
-          cardsValues.length
-        );
-        const taxValue = CalcService.GetTax(InitAmount, amount);
-        return (
-          <Card
-            amount={TaxMonth > 0 ? InitAmount + amount : InitAmount - amount}
-            tax={taxValue}
-            totalAmount={amount}
-          />
-        );
-      })}
-      <Footer addCard={handleClickAdd} />
+      <div className="row">
+        {cardsValues.map((_, index) => {
+          const amount = CalcService.GetMontant(
+            InitAmount,
+            TaxMonth,
+            cardsValues.length
+          );
+          const taxValue = CalcService.GetTax(InitAmount, amount);
+          return (
+            <Card
+              key={index}
+              amount={TaxMonth > 0 ? InitAmount + amount : InitAmount - amount}
+              tax={taxValue}
+              totalAmount={amount}
+            />
+          );
+        })}
+      </div>
+      <div className="row">
+        <Footer addCard={handleClickAdd} />
+      </div>
     </div>
   );
 };
