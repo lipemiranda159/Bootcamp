@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import css from "./index.module.css";
 
 const HeaderCard: React.FC<{

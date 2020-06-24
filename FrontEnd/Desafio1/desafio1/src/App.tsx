@@ -9,16 +9,15 @@ import M from "materialize-css";
 function App() {
   M.AutoInit();
   const valueAux = new ValueState();
-  valueAux.InitAmount = 70000;
-  valueAux.TaxMonth = -2;
-  valueAux.Period = 24;
+  valueAux.InitAmount = 0;
+  valueAux.TaxMonth = 0;
   const [value, setValue] = useState(valueAux);
 
   return (
     <div className="container">
       <Header title="React - Juros compostos" />
-      <MainHeader />
-      <Main state={value} />
+      <MainHeader state={value} setState={setValue} />
+      <Main state={value} setState={setValue} />
     </div>
   );
 }
