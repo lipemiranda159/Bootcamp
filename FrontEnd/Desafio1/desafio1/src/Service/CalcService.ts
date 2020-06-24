@@ -8,7 +8,7 @@ class CalcService {
   }
 
   public static GetTax(InitAmount: number, Amount: number) {
-    return (Amount * 100) / InitAmount;
+    return Amount / InitAmount;
   }
 }
 

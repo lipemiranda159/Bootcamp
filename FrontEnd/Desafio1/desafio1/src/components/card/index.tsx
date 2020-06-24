@@ -2,7 +2,6 @@ import React from "react";
 import HeaderCard from "./headerCard";
 import BodyCard from "./body";
 import css from "./index.module.css";
-import { SSL_OP_MICROSOFT_BIG_SSLV3_BUFFER } from "constants";
 
 const Card: React.FC<{
   totalAmount: string;

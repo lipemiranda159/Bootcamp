@@ -3,6 +3,7 @@ import Footer from "../footer";
 import Card from "../card";
 import ValueState from "../../model/ValueState";
 import CalcService from "../../Service/CalcService";
+import FormatService from "../../Service/FormatService";
 
 const Main: React.FC<{ state: ValueState }> = ({ state }) => {
   const { InitAmount, Period, TaxMonth } = state;
@@ -21,13 +22,14 @@ const Main: React.FC<{ state: ValueState }> = ({ state }) => {
           const amount = CalcService.GetMontant(InitAmount, TaxMonth, month);
           const diff = TaxMonth > 0 ? InitAmount + amount : InitAmount - amount;
           const taxValue = CalcService.GetTax(InitAmount, diff);
+
           return (
             <Card
               key={month}
               month={month}
-              amount={diff.toFixed(2)}
-              tax={taxValue.toFixed(2)}
-              totalAmount={amount.toFixed(2)}
+              amount={FormatService.FormatCurrency(diff)}
+              tax={FormatService.FormatPercent(taxValue)}
+              totalAmount={FormatService.FormatCurrency(amount)}
             />
           );
         })}
