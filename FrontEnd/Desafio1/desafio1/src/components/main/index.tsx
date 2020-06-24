@@ -5,6 +5,7 @@ import CalcService from "../../Service/CalcService";
 import FormatService from "../../Service/FormatService";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import css from "../main/index.module.css";
 
 const Main: React.FC<{
   Period: number[];
@@ -24,7 +25,7 @@ const Main: React.FC<{
     }
   };
   return (
-    <div>
+    <div className={css.fullContent}>
       <div className="row">
         {Period.length > 1 &&
           Period.map((month) => {
@@ -48,7 +49,7 @@ const Main: React.FC<{
           })}
         <ToastContainer />
       </div>
-      <div className="row">
+      <div className={css.footer}>
         <Footer addCard={handleClickAdd} />
       </div>
     </div>

@@ -12,22 +12,24 @@ function App() {
   const [Period, setPeriod] = useState(initialPeriod);
 
   return (
-    <div className="container">
+    <div className="fullContent">
       <Header title="React - Juros compostos" />
-      <MainHeader
-        InitAmount={InitAmount}
-        setInitAmount={setInitAmount}
-        Tax={Tax}
-        setTax={setTax}
-        Period={Period}
-        setPeriod={setPeriod}
-      />
-      <Main
-        Period={Period}
-        InitAmount={InitAmount}
-        TaxMonth={Tax}
-        setState={setPeriod}
-      />
+      <div className="container">
+        <MainHeader
+          InitAmount={InitAmount}
+          setInitAmount={setInitAmount}
+          Tax={Tax}
+          setTax={setTax}
+          Period={Period}
+          setPeriod={setPeriod}
+        />
+        <Main
+          Period={Period}
+          InitAmount={InitAmount}
+          TaxMonth={Tax}
+          setState={setPeriod}
+        />
+      </div>
     </div>
   );
 }

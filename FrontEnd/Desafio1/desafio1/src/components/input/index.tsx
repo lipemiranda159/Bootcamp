@@ -1,6 +1,7 @@
 import React, { ChangeEvent } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import css from "./index.module.css";
 const Input: React.FC<{
   inputId: string;
   label: string;
@@ -36,12 +37,14 @@ const Input: React.FC<{
   };
   return (
     <div className="input-field col s4">
-      <label htmlFor={inputId}>{label}</label>
+      <label className={css.lableText} htmlFor={inputId}>
+        {label}
+      </label>
       {inputId === "period" ? (
         <input
           id={inputId}
           type="number"
-          className="validate"
+          className={css.validate}
           value={state.length - 1}
           onChange={handleChangeValue}
         />
@@ -49,7 +52,7 @@ const Input: React.FC<{
         <input
           id={inputId}
           type="number"
-          className="validate"
+          className={css.validate}
           onChange={handleChangeValue}
         />
       )}

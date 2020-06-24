@@ -3,7 +3,7 @@ import css from "./index.module.css";
 
 const Footer = (props: any) => {
   return (
-    <footer className={css.footer}>
+    <div className={css.footer}>
       <a
         href="#!"
         className="btn-floating btn-large waves-effect waves-light red"
@@ -11,7 +11,7 @@ const Footer = (props: any) => {
       >
         <i className="material-icons no-autoinit">add</i>
       </a>
-    </footer>
+    </div>
   );
 };
 

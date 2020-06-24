@@ -3,7 +3,7 @@ import css from "./index.module.css";
 
 const Header: React.FC<{ title: string }> = ({ title }) => {
   return (
-    <header>
+    <header className={css.headerTilte}>
       <h1 className={css.title}>{title}</h1>
     </header>
   );
