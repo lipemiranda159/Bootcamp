@@ -7,14 +7,16 @@ const Card: React.FC<{
   totalAmount: string;
   amount: string;
   tax: string;
+  period: number[];
   month: number;
-}> = ({ totalAmount, amount, tax, month }) => {
+  setState: any;
+}> = ({ totalAmount, amount, tax, period, month, setState }) => {
   const cssClass = `card horizontal ${css.flexOrientation}`;
   const colClass = `col s2 ${css.col}`;
   return (
     <div className={colClass}>
       <div className={cssClass}>
-        <HeaderCard />
+        <HeaderCard period={period} month={month} setState={setState} />
         <BodyCard
           totalAmount={totalAmount}
           amount={amount}

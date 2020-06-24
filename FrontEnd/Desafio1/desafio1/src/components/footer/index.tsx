@@ -9,7 +9,7 @@ const Footer = (props: any) => {
         className="btn-floating btn-large waves-effect waves-light red"
         onClick={props.addCard}
       >
-        <i className="material-icons">add</i>
+        <i className="material-icons no-autoinit">add</i>
       </a>
     </footer>
   );

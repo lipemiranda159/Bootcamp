@@ -14,6 +14,11 @@ const Main: React.FC<{ state: ValueState }> = ({ state }) => {
     auxValues.push(period.length);
     setPeriod(auxValues);
   };
+  const handleClickCloseCard = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    return (event: React.MouseEvent) => {
+      console.log("clicou no remover");
+    };
+  };
   return (
     <div>
       <div className="row">
@@ -27,6 +32,8 @@ const Main: React.FC<{ state: ValueState }> = ({ state }) => {
             <Card
               key={month}
               month={month}
+              setState={setPeriod}
+              period={period}
               amount={FormatService.FormatCurrency(diff)}
               tax={FormatService.FormatPercent(taxValue)}
               totalAmount={FormatService.FormatCurrency(amount)}
