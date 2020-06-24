@@ -11,7 +11,7 @@ const HeaderCard: React.FC<{
     let auxState = Object.assign([], period);
     auxState = auxState.filter((m) => m !== month);
     console.log(auxState);
-    for (let index = 0; index < auxState.length; index++) {
+    for (let index = month; index < auxState.length; index++) {
       (auxState as any)[index] = (auxState[index] - 1) as number;
     }
     setState(auxState);
@@ -25,14 +25,6 @@ const HeaderCard: React.FC<{
       >
         <i className="material-icons">clear</i>
       </a>
-      <a className="dropdown-trigger" href="#!" data-target="dropdown1">
-        <i className="material-icons ">more_vert</i>
-      </a>
-      <ul id="dropdown1" className="dropdown-content">
-        <li>
-          <a href="#!">one</a>
-        </li>
-      </ul>
     </header>
   );
 };

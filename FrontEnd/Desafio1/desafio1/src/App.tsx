@@ -3,7 +3,6 @@ import "./App.css";
 import Header from "./components/header";
 import MainHeader from "./components/mainHeader";
 import Main from "./components/main";
-import M from "materialize-css";
 
 function App() {
   // M.AutoInit();
