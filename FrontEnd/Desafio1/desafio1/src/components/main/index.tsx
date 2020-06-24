@@ -3,6 +3,8 @@ import Footer from "../footer";
 import Card from "../card";
 import CalcService from "../../Service/CalcService";
 import FormatService from "../../Service/FormatService";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 const Main: React.FC<{
   Period: number[];
@@ -11,11 +13,15 @@ const Main: React.FC<{
   TaxMonth: number;
 }> = ({ Period, InitAmount, TaxMonth, setState }) => {
   const handleClickAdd = useCallback(() => {
-    const auxState = Object.assign([], Period);
-    console.log(Period.length);
-    console.log(auxState);
-    auxState.push(auxState.length);
-    setState(auxState);
+    if (InitAmount !== 0 && TaxMonth !== 0) {
+      const auxState = Object.assign([], Period);
+      console.log(Period.length);
+      console.log(auxState);
+      auxState.push(auxState.length);
+      setState(auxState);
+    } else {
+      toast.error("Digite os valores do montante inicial e o valor da taxa!");
+    }
   }, []);
   return (
     <div>
@@ -40,6 +46,7 @@ const Main: React.FC<{
               />
             );
           })}
+        <ToastContainer />
       </div>
       <div className="row">
         <Footer addCard={handleClickAdd} />

@@ -18,21 +18,26 @@ const MainHeader: React.FC<{
             label="Montante inicial"
             state={InitAmount}
             setState={setInitAmount}
+            InitAmount={InitAmount}
+            Tax={Tax}
           />
           <Input
             inputId="taxMonth"
             label="Taxa de juros mensal"
             setState={setTax}
             state={Tax}
+            InitAmount={InitAmount}
+            Tax={Tax}
           />
           <Input
             inputId="period"
             label="Período"
             state={Period}
             setState={setPeriod}
+            InitAmount={InitAmount}
+            Tax={Tax}
           />
         </div>
-        <div className="row"></div>
       </div>
     </div>
   );
