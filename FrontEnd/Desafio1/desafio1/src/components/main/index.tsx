@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React from "react";
 import Footer from "../footer";
 import Card from "../card";
 import CalcService from "../../Service/CalcService";
@@ -12,7 +12,7 @@ const Main: React.FC<{
   InitAmount: number;
   TaxMonth: number;
 }> = ({ Period, InitAmount, TaxMonth, setState }) => {
-  const handleClickAdd = useCallback(() => {
+  const handleClickAdd = () => {
     if (InitAmount !== 0 && TaxMonth !== 0) {
       const auxState = Object.assign([], Period);
       console.log(Period.length);
@@ -22,7 +22,7 @@ const Main: React.FC<{
     } else {
       toast.error("Digite os valores do montante inicial e o valor da taxa!");
     }
-  }, []);
+  };
   return (
     <div>
       <div className="row">

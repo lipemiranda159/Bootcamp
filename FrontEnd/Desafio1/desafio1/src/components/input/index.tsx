@@ -20,8 +20,8 @@ const Input: React.FC<{
       }
     } else {
       state = event.target.valueAsNumber;
+      return setState(state);
     }
-    setState(state);
   };
   return (
     <div className="input-field col s4">

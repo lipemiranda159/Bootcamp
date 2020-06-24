@@ -13,6 +13,7 @@ const HeaderCard: React.FC<{
   return (
     <header className={css.header}>
       <a
+        href="#!"
         className="btn-floating btn-small waves-effect waves-light red"
         onClick={handleClick}
       >

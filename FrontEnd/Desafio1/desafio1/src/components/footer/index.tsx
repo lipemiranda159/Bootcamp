@@ -5,7 +5,7 @@ const Footer = (props: any) => {
   return (
     <footer className={css.footer}>
       <a
-        href="#"
+        href="#!"
         className="btn-floating btn-large waves-effect waves-light red"
         onClick={props.addCard}
       >
