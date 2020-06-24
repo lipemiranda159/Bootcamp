@@ -6,7 +6,7 @@ import Main from "./components/main";
 import M from "materialize-css";
 
 function App() {
-  M.AutoInit();
+  // M.AutoInit();
   const [InitAmount, setInitAmount] = useState(0);
   const [Tax, setTax] = useState(0);
   const initialPeriod: number[] = [0];

@@ -12,9 +12,20 @@ const Input: React.FC<{
   const handleChangeValue = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.id === "period") {
       if (InitAmount !== 0 && Tax !== 0) {
-        const auxState = Object.assign([], state);
-        auxState.push(event.target.valueAsNumber);
-        return setState(auxState);
+        let auxState = Object.assign([], state);
+        console.log(state.length);
+        console.log(auxState);
+        if (state.length <= event.target.valueAsNumber) {
+          auxState.push(auxState.length);
+        } else {
+          if (auxState.length > 0) {
+            auxState = auxState.slice(0, -1);
+          } else
+            toast.error(
+              "Não é permitido que o período seja menor do que zero!"
+            );
+        }
+        setState(auxState);
       } else {
         toast.error("Digite os valores do montante inicial e o valor da taxa!");
       }

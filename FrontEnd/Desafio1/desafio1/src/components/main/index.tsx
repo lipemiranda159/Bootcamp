@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import Footer from "../footer";
 import Card from "../card";
 import CalcService from "../../Service/CalcService";
@@ -12,7 +12,7 @@ const Main: React.FC<{
   InitAmount: number;
   TaxMonth: number;
 }> = ({ Period, InitAmount, TaxMonth, setState }) => {
-  const handleClickAdd = () => {
+  const handleClickAdd = (event: ChangeEvent<HTMLInputElement>) => {
     if (InitAmount !== 0 && TaxMonth !== 0) {
       const auxState = Object.assign([], Period);
       console.log(Period.length);

@@ -7,8 +7,14 @@ const HeaderCard: React.FC<{
   setState: any;
 }> = ({ period, month, setState }) => {
   const handleClick = () => {
-    period = period.filter((m) => m !== month);
-    setState(period);
+    console.log(period);
+    let auxState = Object.assign([], period);
+    auxState = auxState.filter((m) => m !== month);
+    console.log(auxState);
+    for (let index = 0; index < auxState.length; index++) {
+      (auxState as any)[index] = (auxState[index] - 1) as number;
+    }
+    setState(auxState);
   };
   return (
     <header className={css.header}>
