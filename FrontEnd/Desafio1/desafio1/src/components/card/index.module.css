@@ -5,6 +5,19 @@
   height: 150px;
 }
 
-.col {
-  margin: 25px;
+@media screen and (max-width: 700px) {
+  .col {
+    margin-right: 115px;
+  }
+}
+
+@media screen and (min-width: 710px) {
+  .col {
+    margin-right: 105px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .col {
+    margin-right: 60px;
+  }
 }
