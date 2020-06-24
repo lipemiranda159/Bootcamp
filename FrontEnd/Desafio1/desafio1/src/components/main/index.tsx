@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import Footer from "../footer";
 import Card from "../card";
 import CalcService from "../../Service/CalcService";

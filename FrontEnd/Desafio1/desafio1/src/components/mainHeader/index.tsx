@@ -32,6 +32,7 @@ const MainHeader: React.FC<{
             setState={setPeriod}
           />
         </div>
+        <div className="row"></div>
       </div>
     </div>
   );

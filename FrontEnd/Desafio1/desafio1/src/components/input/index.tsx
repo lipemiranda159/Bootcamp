@@ -8,7 +8,9 @@ const Input: React.FC<{
 }> = ({ inputId, label, setState, state }) => {
   const handleChangeValue = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.id === "period") {
-      state.push(event.target.valueAsNumber);
+      const auxState = Object.assign([], state);
+      auxState.push(event.target.valueAsNumber);
+      return setState(auxState);
     } else {
       state = event.target.valueAsNumber;
     }
@@ -17,13 +19,22 @@ const Input: React.FC<{
   return (
     <div className="input-field col s4">
       <label htmlFor={inputId}>{label}</label>
-
-      <input
-        id={inputId}
-        type="number"
-        className="validate"
-        onChange={handleChangeValue}
-      />
+      {inputId === "period" ? (
+        <input
+          id={inputId}
+          type="number"
+          className="validate"
+          value={state.length - 1}
+          onChange={handleChangeValue}
+        />
+      ) : (
+        <input
+          id={inputId}
+          type="number"
+          className="validate"
+          onChange={handleChangeValue}
+        />
+      )}
     </div>
   );
 };
