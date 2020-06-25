@@ -5,16 +5,18 @@ const BodyCard: React.FC<{
   totalAmount: string;
   amount: string;
   tax: string;
-}> = ({ totalAmount, amount, tax }) => {
+  type: string;
+}> = ({ totalAmount, amount, tax, type }) => {
   const classColor =
-    amount < totalAmount
+    type == "red"
       ? `material-icons md-18 ${css.red}`
-      : `material-icons md-18 ${css.red}`;
+      : `material-icons md-18 ${css.default}`;
+  const icon = type == "red" ? "trending_down" : "trending_up";
   return (
     <div className={css.body}>
       <div className={css.id}>
         <h3>
-          <i className={classColor}>trending_down</i>
+          <i className={classColor}>{icon}</i>
         </h3>
       </div>
       <div>

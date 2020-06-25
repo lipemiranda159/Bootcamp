@@ -34,7 +34,7 @@ const Main: React.FC<{
             const diff =
               TaxMonth > 0 ? InitAmount + amount : InitAmount - amount;
             const taxValue = CalcService.GetTax(InitAmount, diff);
-
+            const type = TaxMonth > 0 ? "default" : "red";
             return (
               <Card
                 key={month}
@@ -44,6 +44,7 @@ const Main: React.FC<{
                 amount={FormatService.FormatCurrency(diff)}
                 tax={FormatService.FormatPercent(taxValue)}
                 totalAmount={FormatService.FormatCurrency(amount)}
+                type={type}
               />
             );
           })}
