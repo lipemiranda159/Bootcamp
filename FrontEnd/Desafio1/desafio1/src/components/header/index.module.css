@@ -1,13 +1,4 @@
-.headerTilte {
-  display: flex;
+.headerTitle {
   background-color: #2f3542;
-  width: 100vw;
-  height: 20vh;
-  align-items: center;
-  justify-content: center;
-}
-
-.title {
-  text-align: center;
-  color: white;
+  padding-left: 5px;
 }

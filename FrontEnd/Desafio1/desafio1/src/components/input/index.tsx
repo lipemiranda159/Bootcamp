@@ -36,7 +36,7 @@ const Input: React.FC<{
     }
   };
   return (
-    <div className="input-field col s4">
+    <div className="input-field col s3">
       <label className={css.lableText} htmlFor={inputId}>
         {label}
       </label>

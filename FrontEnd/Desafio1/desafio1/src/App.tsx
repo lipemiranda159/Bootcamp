@@ -5,7 +5,6 @@ import MainHeader from "./components/mainHeader";
 import Main from "./components/main";
 
 function App() {
-  // M.AutoInit();
   const [InitAmount, setInitAmount] = useState(0);
   const [Tax, setTax] = useState(0);
   const initialPeriod: number[] = [0];
@@ -13,7 +12,7 @@ function App() {
 
   return (
     <div className="fullContent">
-      <Header title="React - Juros compostos" />
+      <Header />
       <div className="container">
         <MainHeader
           InitAmount={InitAmount}

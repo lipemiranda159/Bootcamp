@@ -1,9 +1,8 @@
 import React from "react";
-import css from "./index.module.css";
 
 const Footer = (props: any) => {
   return (
-    <div className={css.footer}>
+    <div>
       <a
         href="#!"
         className="btn-floating btn-large waves-effect waves-light red"
