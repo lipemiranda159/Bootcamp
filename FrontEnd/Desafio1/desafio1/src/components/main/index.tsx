@@ -10,14 +10,19 @@ const Main: React.FC<{
   setState: any;
   InitAmount: number;
   TaxMonth: number;
-}> = ({ Period, InitAmount, TaxMonth, setState }) => {
+  setGraph: any;
+}> = ({ Period, InitAmount, TaxMonth, setState, setGraph }) => {
   return (
     <div className={css.fullContent}>
       <div className="center">
         <div className="row">
           {Period.length > 1 &&
             Period.map((month) => {
-              if (month === 0) return <div key={0}></div>;
+              if (month === 0) {
+                setGraph(false);
+                return <div key={0}></div>;
+              }
+              setGraph(true);
               const amount = CalcService.GetMontant(
                 InitAmount,
                 TaxMonth,

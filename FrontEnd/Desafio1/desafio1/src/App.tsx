@@ -9,10 +9,11 @@ function App() {
   const [Tax, setTax] = useState(0);
   const initialPeriod: number[] = [0];
   const [Period, setPeriod] = useState(initialPeriod);
+  const [graphAble, setGraphAble] = useState(false);
 
   return (
     <div className="fullContent">
-      <Header />
+      <Header graph={graphAble} />
       <div className="container">
         <MainHeader
           InitAmount={InitAmount}
@@ -27,6 +28,7 @@ function App() {
           InitAmount={InitAmount}
           TaxMonth={Tax}
           setState={setPeriod}
+          setGraph={setGraphAble}
         />
       </div>
     </div>
