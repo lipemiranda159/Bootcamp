@@ -17,12 +17,7 @@ const Card: React.FC<{
     <div className={colClass}>
       <div className={cssClass}>
         <HeaderCard period={period} month={month} setState={setState} />
-        <BodyCard
-          totalAmount={totalAmount}
-          amount={amount}
-          tax={tax}
-          month={month}
-        />
+        <BodyCard totalAmount={totalAmount} amount={amount} tax={tax} />
       </div>
     </div>
   );

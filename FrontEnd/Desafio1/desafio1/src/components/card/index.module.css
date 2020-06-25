@@ -13,11 +13,11 @@
 
 @media screen and (min-width: 710px) {
   .col {
-    margin-right: 105px;
+    margin-right: 120px;
   }
 }
 @media screen and (min-width: 1000px) {
   .col {
-    margin-right: 70px;
+    margin-right: 100px;
   }
 }

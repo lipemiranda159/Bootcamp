@@ -9,3 +9,11 @@
   display: flex;
   align-items: center;
 }
+
+.red {
+  color: #e74c3c;
+}
+
+.default {
+  color: green;
+}

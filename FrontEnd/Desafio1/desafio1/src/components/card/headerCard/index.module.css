@@ -1,9 +1,17 @@
+.right,
+.left {
+  padding: 5px;
+}
+
 .header {
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  padding-top: 5px;
-  padding-bottom: 4px;
-  padding-right: 5px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   background-color: #57606f;
+  height: 5vh;
+}
+
+.left {
+  color: white;
 }

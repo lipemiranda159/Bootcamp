@@ -18,13 +18,18 @@ const HeaderCard: React.FC<{
   };
   return (
     <header className={css.header}>
-      <a
-        href="#!"
-        className="btn-floating btn-small waves-effect waves-light red"
-        onClick={handleClick}
-      >
-        <i className="material-icons">clear</i>
-      </a>
+      <div className={css.left}>
+        <h5>{month}</h5>
+      </div>
+      <div className={css.right}>
+        <a
+          href="#!"
+          className="btn-floating btn-small waves-effect waves-light red"
+          onClick={handleClick}
+        >
+          <i className="material-icons">clear</i>
+        </a>
+      </div>
     </header>
   );
 };
