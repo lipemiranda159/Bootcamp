@@ -12,6 +12,7 @@
     "materialize-css": "^1.0.0-rc.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-modal": "^3.11.2",
     "react-scripts": "3.4.1",
     "typescript": "~3.7.2"
   },
@@ -39,6 +40,7 @@
   "devDependencies": {
     "@types/materialize-css": "^1.0.8",
     "@types/react": "^16.9.38",
+    "@types/react-modal": "^3.10.6",
     "react-toastify": "^6.0.6"
   }
 }
