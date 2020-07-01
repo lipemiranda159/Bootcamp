@@ -5,71 +5,68 @@ import insuficientBalanceException from "../exceptions/InsuficientBalanceExcepti
 import AccountService from "../services/AccountService";
 import { balanceRouter } from "../routes/balanceRouter";
 class balanceController {
-  private dbContext = new databaseService();
   private accountService = new AccountService();
-
-  constructor() {
-    this.dbContext
-      .connect()
-      .then(() => {
-        console.log("conectado com sucesso");
-      })
-      .catch(() => console.log("error"));
-  }
 
   getBalances = async (request: Request, response: Response) => {
     try {
-      const result = await this.dbContext.getAllBalances();
+      const result = await this.accountService.GetAllBalances();
       response.send(result);
-    } catch (error) {
-      response.send({ res: `err: ${error}` });
+    } catch (e) {
+      const codeError = this.getErrorCode(e);
+      response.status(codeError).send({ res: `${e}` });
+    }
+  };
+
+  getBalance = async (request: Request, response: Response) => {
+    try {
+      const { agencia, conta } = request.params;
+
+      const result = await this.accountService.getBalance(
+        parseInt(agencia),
+        parseInt(conta)
+      );
+      response.send(result);
+    } catch (e) {
+      const codeError = this.getErrorCode(e);
+      response.status(codeError).send({ res: `${e}` });
     }
   };
 
   depositAccount = async (request: Request, response: Response) => {
     const { agencia, conta, balance } = request.body;
     try {
-      const result = await this.dbContext.getAccount({ agencia, conta });
-      if (result) {
-        result.balance = this.accountService.DepositBalance(
-          result.balance,
-          balance
-        );
-        result.save();
-        response.send(result);
-      } else {
-        throw new accountNotFoundException("Account or agency not found!");
-      }
+      const result = await this.accountService.getBalance(agencia, conta);
+      result.balance = this.accountService.DepositBalance(
+        result.balance,
+        balance
+      );
+      result.save();
+      response.send(result);
     } catch (e) {
-      let codeError = 500;
-      if (e instanceof accountNotFoundException) {
-        codeError = 204;
-      }
-      response.status(codeError).send({ res: `${e}` });
-    }
-  };
-  withdrawalAccount = async (request: Request, response: Response) => {
-    const { agencia, conta, balance } = request.body;
-    try {
-      const result = await this.dbContext.getAccount({ agencia, conta });
-      if (result) {
-        result.balance = this.accountService.CashWithdrawalBalance(
-          result.balance,
-          balance
-        );
-        result.save();
-        response.send(result);
-      } else {
-        throw new accountNotFoundException("Account or agency not found!");
-      }
-    } catch (e) {
-      let codeError = 500;
-      codeError = this.getErrorCode(e, codeError);
+      const codeError = this.getErrorCode(e);
       response.status(codeError).send({ res: `${e}` });
     }
   };
 
-  private getErrorCode(e: any, codeError: number) {
+  withdrawalAccount = async (request: Request, response: Response) => {
+    const { agencia, conta, balance } = request.body;
+    try {
+      const result = await this.accountService.getBalance(agencia, conta);
+      result.balance = this.accountService.CashWithdrawalBalance(
+        result.balance,
+        balance
+      );
+      result.save();
+      response.send(result);
+    } catch (e) {
+      const codeError = this.getErrorCode(e);
+      response.status(codeError).send({ res: `${e}` });
+    }
+  };
+
+  private getErrorCode(e: any) {
+    let codeError = 500;
+
     if (e instanceof accountNotFoundException) {
       codeError = 204;
     } else if (e instanceof insuficientBalanceException) {
