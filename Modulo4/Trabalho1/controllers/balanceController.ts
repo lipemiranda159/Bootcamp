@@ -64,6 +64,16 @@ class balanceController {
     }
   };
 
+  deleteAccount = async (request: Request, response: Response) => {
+    try {
+      const { agencia, conta } = request.body;
+      response.send(await this.accountService.deleteBalance(conta, agencia));
+    } catch (e) {
+      const codeError = this.getErrorCode(e);
+      response.status(codeError).send({ res: `${e}` });
+    }
+  };
+
   private getErrorCode(e: any) {
     let codeError = 500;
 

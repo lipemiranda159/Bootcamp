@@ -59,6 +59,10 @@ class databaseService {
     return await this.dbContext.findOne(filter);
   };
 
+  deleteAccount = async (filter: any) => {
+    await this.dbContext.deleteOne(filter);
+  };
+
   save = async (obj: any) => {
     this.dbContext.save(obj);
   };

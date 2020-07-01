@@ -27,9 +27,16 @@ class AccountService {
     }
   };
 
+  deleteBalance = async (account: number, agency: number) => {
+    await this.dbContext.deleteAccount({ account, agency });
+    const result = await this.dbContext.getAccount({ agency });
+    return result.length;
+  };
+
   DepositBalance = (OldBalance: number, value: number) => {
     return OldBalance + value;
   };
+
   CashWithdrawalBalance = (OldBalance: number, value: number) => {
     if (OldBalance >= value + 1) {
       return OldBalance - value - 1;
