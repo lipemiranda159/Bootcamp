@@ -27,7 +27,7 @@ class databaseService {
     });
   }
 
-  public async connect() {
+  connect = async () => {
     try {
       const uri =
         "mongodb+srv://mongo:260191@cluster0-kvtie.gcp.mongodb.net/Igti?retryWrites=true&w=majority";
@@ -45,19 +45,23 @@ class databaseService {
       console.log(`err: ${error}`);
       throw error;
     }
-  }
+  };
 
-  public async getBalances() {
+  getAllBalances = async () => {
     try {
       return await this.dbContext.find({});
     } catch (error) {
       return error;
     }
-  }
+  };
 
-  public closeConnection() {
-    this.dbContext.closeConnection();
-  }
+  getAccount = async (filter: any) => {
+    return await this.dbContext.findOne(filter);
+  };
+
+  save = async (obj: any) => {
+    this.dbContext.save(obj);
+  };
 }
 
 export default databaseService;
