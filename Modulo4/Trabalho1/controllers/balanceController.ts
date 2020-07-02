@@ -9,7 +9,16 @@ class balanceController {
 
   getBalances = async (request: Request, response: Response) => {
     try {
-      const result = await this.accountService.GetAllBalances();
+      const { take, order } = request.query;
+      let result = await this.accountService.GetAllBalances();
+      if (order) {
+        result = result.sort(function (a: any, b: any) {
+          return a.balance - b.balance;
+        });
+      }
+      if (take) {
+        result = result.slice(0, parseInt(take.toString()) - 1);
+      }
       response.send(result);
     } catch (e) {
       const codeError = this.getErrorCode(e);
