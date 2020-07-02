@@ -116,7 +116,12 @@ class balanceController {
   };
 
   transferToPrivate = async (request: Request, response: Response) => {
-    return await this.accountService.transferAccountAgencyPrivate();
+    try {
+      response.send(await this.accountService.transferAccountAgencyPrivate());
+    } catch (e) {
+      const codeError = this.getErrorCode(e);
+      response.status(codeError).send({ res: `${e}` });
+    }
   };
 
   private getErrorCode(e: any) {

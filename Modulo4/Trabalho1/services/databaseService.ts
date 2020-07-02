@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+import dotenv from "dotenv";
 
 class databaseService {
   private schema: Schema;
@@ -6,6 +7,7 @@ class databaseService {
   private dbContext: any;
 
   constructor() {
+    dotenv.config();
     this.schema = new Schema({
       agencia: {
         type: Number,
@@ -29,8 +31,7 @@ class databaseService {
 
   connect = async () => {
     try {
-      const uri =
-        "mongodb+srv://mongo:260191@cluster0-kvtie.gcp.mongodb.net/Igti?retryWrites=true&w=majority";
+      const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-kvtie.gcp.mongodb.net/Igti?retryWrites=true&w=majority`;
 
       await mongoose.connect(uri, {
         useNewUrlParser: true,
