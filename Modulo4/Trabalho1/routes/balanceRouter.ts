@@ -10,3 +10,4 @@ balanceRouter.get("/:agency/:account", balancesController.getBalance);
 balanceRouter.post("/deposit", balancesController.depositAccount);
 balanceRouter.delete("/", balancesController.deleteAccount);
 balanceRouter.post("/transfer", balancesController.transferBalance);
+balanceRouter.put("/transferToPrivate", balancesController.transferToPrivate);

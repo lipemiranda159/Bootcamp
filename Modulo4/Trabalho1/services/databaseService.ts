@@ -55,8 +55,21 @@ class databaseService {
     }
   };
 
-  getAccount = async (filter: any) => {
-    return await this.dbContext.findOne(filter);
+  getAccount = async (
+    filter: any,
+    sorted: any = undefined,
+    take: number = -1
+  ) => {
+    let result = await this.dbContext.findOne(filter);
+
+    if (sorted) {
+      result = result.sort(sorted);
+    }
+
+    if (take > 0) {
+      result = result.limit(take);
+    }
+    return result;
   };
 
   deleteAccount = async (filter: any) => {
@@ -65,6 +78,13 @@ class databaseService {
 
   save = async (obj: any) => {
     this.dbContext.save(obj);
+  };
+  aggregateByAgency = async () => {
+    return await this.dbContext.aggregate([
+      {
+        $group: { _id: "$agencia" },
+      },
+    ]);
   };
 }
 

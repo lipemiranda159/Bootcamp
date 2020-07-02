@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response, request } from "express";
 import databaseService from "../services/databaseService";
 import accountNotFoundException from "../exceptions/accountNotFoundException";
 import insuficientBalanceException from "../exceptions/InsuficientBalanceException";
@@ -113,6 +113,10 @@ class balanceController {
       const codeError = this.getErrorCode(e);
       response.status(codeError).send({ res: `${e}` });
     }
+  };
+
+  transferToPrivate = async (request: Request, response: Response) => {
+    return await this.accountService.transferAccountAgencyPrivate();
   };
 
   private getErrorCode(e: any) {

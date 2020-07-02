@@ -75,6 +75,31 @@ class AccountService {
     destAccount.save();
     return origAccount.balance;
   };
+
+  transferAccountAgencyPrivate = async () => {
+    let accounts = null;
+    try {
+      accounts = await this.dbContext.getAccount({ agencia: 99 });
+
+      if (!accounts) {
+        const agencys = await this.dbContext.aggregateByAgency();
+
+        for (let agency of agencys) {
+          let account = await this.dbContext.getAccount(
+            { agencia: agency._id },
+            { balance: -1 },
+            1
+          );
+          account.agencia = 99;
+          account.save();
+        }
+      }
+    } catch (error) {
+      return error;
+    }
+
+    return accounts;
+  };
 }
 
 export default AccountService;
