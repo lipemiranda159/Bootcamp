@@ -74,6 +74,16 @@ class balanceController {
     }
   };
 
+  getAverageBalance = async (request: Request, response: Response) => {
+    try {
+      const { agencia } = request.body;
+      response.send(await this.accountService.getAverageBalance(agencia));
+    } catch (e) {
+      const codeError = this.getErrorCode(e);
+      response.status(codeError).send({ res: `${e}` });
+    }
+  };
+
   transferBalance = async (request: Request, response: Response) => {
     try {
       const {

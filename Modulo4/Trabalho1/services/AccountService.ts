@@ -27,6 +27,19 @@ class AccountService {
     }
   };
 
+  getAverageBalance = async (agency: number) => {
+    const result = await this.dbContext.getAccount({ agency });
+    if (result) {
+      const sum = result.reduce(
+        (accumulator: number, currentValue: number) =>
+          accumulator + currentValue
+      );
+      return sum / result.length;
+    } else {
+      throw new accountNotFoundException("Account or agency not found!");
+    }
+  };
+
   deleteBalance = async (account: number, agency: number) => {
     await this.dbContext.deleteAccount({ account, agency });
     const result = await this.dbContext.getAccount({ agency });
