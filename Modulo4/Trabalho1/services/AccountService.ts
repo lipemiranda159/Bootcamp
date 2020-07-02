@@ -44,6 +44,24 @@ class AccountService {
       throw new insuficientBalanceException("Insuficient balance!");
     }
   };
+  transferBalance = async (
+    agenciaOrig: number,
+    contaOrig: number,
+    agenciaDest: number,
+    contaDest: number,
+    balance: number
+  ) => {
+    const origAccount = await this.getBalance(agenciaOrig, contaOrig);
+    const destAccount = await this.getBalance(agenciaDest, contaDest);
+
+    if (agenciaOrig !== agenciaDest) {
+      origAccount.balance = origAccount.balance - 8 - balance;
+    }
+    destAccount.balance = destAccount.balance + balance;
+    origAccount.save();
+    destAccount.save();
+    return origAccount.balance;
+  };
 }
 
 export default AccountService;

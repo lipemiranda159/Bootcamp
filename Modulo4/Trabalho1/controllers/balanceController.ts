@@ -74,6 +74,28 @@ class balanceController {
     }
   };
 
+  transferBalance = async (request: Request, response: Response) => {
+    try {
+      const {
+        agenciaOrig,
+        contaOrig,
+        agenciaDest,
+        contaDest,
+        balance,
+      } = request.body;
+      return await this.accountService.transferBalance(
+        agenciaOrig,
+        contaOrig,
+        agenciaDest,
+        contaDest,
+        balance
+      );
+    } catch (e) {
+      const codeError = this.getErrorCode(e);
+      response.status(codeError).send({ res: `${e}` });
+    }
+  };
+
   private getErrorCode(e: any) {
     let codeError = 500;
 
