@@ -1,0 +1,144 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "NodeJs API - Challenge 1 Bootcamp",
+    "description": "Api develop for the first challenge of Bootcamp"
+  },
+  "servers": [
+    {
+      "url": "/",
+      "description": ""
+    }
+  ],
+  "tags": [
+    {
+      "name": "Transform Files",
+      "description": "API for generate region files"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": ["Balance"],
+        "summary": "Get balances",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/average": {
+      "get": {
+        "tags": ["Balance"],
+        "summary": "Get balance avarage",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+
+    "/{agency}/{account}": {
+      "get": {
+        "tags": ["Balance"],
+        "summary": "Get account person by agency and account",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/deposit": {
+      "post": {
+        "tags": ["Balance"],
+        "summary": "Make deposit account",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "Agency and account information",
+                "example": {
+                  "agencia": 10,
+                  "conta": 1,
+                  "balance": 20
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "delete": {
+        "tags": ["Citites"],
+        "summary": "Delete account",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "Agency and account information",
+                "example": {
+                  "agencia": 10,
+                  "conta": 1
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/transfer": {
+      "post": {
+        "tags": ["Balance"],
+        "summary": "Transfer balance from a account to another",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "Agency and account information",
+                "example": {
+                  "agenciaOrig": 1,
+                  "contaOrig": 1,
+                  "agenciaDest": 1,
+                  "contaDest": 2,
+                  "balance": 100
+                }
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/transferToPrivate": {
+      "get": {
+        "tags": ["Balance"],
+        "summary": "Transfer big accounts to private agency",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}
