@@ -1,23 +1,34 @@
 import { Request, Response, request } from "express";
-import databaseService from "../services/databaseService";
 import accountNotFoundException from "../exceptions/accountNotFoundException";
 import insuficientBalanceException from "../exceptions/InsuficientBalanceException";
 import AccountService from "../services/AccountService";
-import { balanceRouter } from "../routes/balanceRouter";
+
 class balanceController {
-  private accountService = new AccountService();
+  private accountService: AccountService;
+  private NoFilterBalance = undefined;
+  constructor() {
+    this.accountService = new AccountService();
+  }
 
   getBalances = async (request: Request, response: Response) => {
     try {
       const { take, order } = request.query;
-      let result = await this.accountService.GetAllBalances();
+      let result = await this.accountService.GetAllBalances(
+        this.NoFilterBalance
+      );
       if (order) {
-        result = result.sort(function (a: any, b: any) {
-          return a.balance - b.balance;
-        });
+        if (order === "0") {
+          result = result.sort(function (a: any, b: any) {
+            return a.balance - b.balance;
+          });
+        } else {
+          result = result.sort(function (a: any, b: any) {
+            return b.balance - a.balance;
+          });
+        }
       }
       if (take) {
-        result = result.slice(0, parseInt(take.toString()) - 1);
+        result = result.slice(0, parseInt(take.toString()));
       }
       response.send(result);
     } catch (e) {
@@ -44,7 +55,7 @@ class balanceController {
   depositAccount = async (request: Request, response: Response) => {
     const { agencia, conta, balance } = request.body;
     try {
-      const result = await this.accountService.getBalance(agencia, conta);
+      const result = await this.accountService.getBalance(conta, agencia);
       result.balance = this.accountService.DepositBalance(
         result.balance,
         balance
@@ -60,7 +71,7 @@ class balanceController {
   withdrawalAccount = async (request: Request, response: Response) => {
     const { agencia, conta, balance } = request.body;
     try {
-      const result = await this.accountService.getBalance(agencia, conta);
+      const result = await this.accountService.getBalance(conta, agencia);
       result.balance = this.accountService.CashWithdrawalBalance(
         result.balance,
         balance
@@ -86,7 +97,9 @@ class balanceController {
   getAverageBalance = async (request: Request, response: Response) => {
     try {
       const { agencia } = request.body;
-      response.send(await this.accountService.getAverageBalance(agencia));
+      response.send({
+        average: await this.accountService.getAverageBalance(agencia),
+      });
     } catch (e) {
       const codeError = this.getErrorCode(e);
       response.status(codeError).send({ res: `${e}` });
@@ -95,19 +108,9 @@ class balanceController {
 
   transferBalance = async (request: Request, response: Response) => {
     try {
-      const {
-        agenciaOrig,
-        contaOrig,
-        agenciaDest,
-        contaDest,
-        balance,
-      } = request.body;
-      return await this.accountService.transferBalance(
-        agenciaOrig,
-        contaOrig,
-        agenciaDest,
-        contaDest,
-        balance
+      const { contaOrig, contaDest, balance } = request.body;
+      response.send(
+        await this.accountService.transferBalance(contaOrig, contaDest, balance)
       );
     } catch (e) {
       const codeError = this.getErrorCode(e);

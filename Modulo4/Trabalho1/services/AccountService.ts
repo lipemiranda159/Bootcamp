@@ -1,6 +1,7 @@
 import insuficientBalanceException from "../exceptions/InsuficientBalanceException";
 import databaseService from "./databaseService";
 import accountNotFoundException from "../exceptions/accountNotFoundException";
+import { response } from "express";
 
 class AccountService {
   private dbContext = new databaseService();
@@ -14,12 +15,24 @@ class AccountService {
       .catch(() => console.log("error"));
   }
 
-  GetAllBalances = async () => {
-    return await this.dbContext.getAllBalances();
+  GetAllBalances = async (filter: any | undefined) => {
+    return await this.dbContext.getAllBalances(filter);
   };
 
-  getBalance = async (account: number, agency: number) => {
-    const result = await this.dbContext.getAccount({ account, agency });
+  GetAllByAgency = async (agencia: number) => {
+    return await this.dbContext.getAllByAgency(agencia);
+  };
+  getAccount = async (agencia: number) => {
+    const result = await this.dbContext.getAccount({ agencia });
+    if (result) {
+      return result;
+    } else {
+      throw new accountNotFoundException("Agency not found!");
+    }
+  };
+
+  getBalance = async (conta: number, agencia: number) => {
+    const result = await this.dbContext.getAccount({ conta, agencia });
     if (result) {
       return result;
     } else {
@@ -27,22 +40,22 @@ class AccountService {
     }
   };
 
-  getAverageBalance = async (agency: number) => {
-    const result = await this.dbContext.getAccount({ agency });
+  getAverageBalance = async (agencia: number) => {
+    const result = await this.GetAllByAgency(agencia);
     if (result) {
-      const sum = result.reduce(
-        (accumulator: number, currentValue: number) =>
-          accumulator + currentValue
-      );
-      return sum / result.length;
+      const countAccount = result.length;
+      const sum = result
+        .map((account: any) => account.balance)
+        .reduce((acc: any, cur: any) => acc + cur);
+      return sum / countAccount;
     } else {
       throw new accountNotFoundException("Account or agency not found!");
     }
   };
 
-  deleteBalance = async (account: number, agency: number) => {
-    await this.dbContext.deleteAccount({ account, agency });
-    const result = await this.dbContext.getAccount({ agency });
+  deleteBalance = async (conta: number, agencia: number) => {
+    await this.dbContext.deleteAccount({ conta, agencia });
+    const result = await this.dbContext.getAllBalances({ agencia });
     return result.length;
   };
 
@@ -58,17 +71,17 @@ class AccountService {
     }
   };
   transferBalance = async (
-    agenciaOrig: number,
     contaOrig: number,
-    agenciaDest: number,
     contaDest: number,
     balance: number
   ) => {
-    const origAccount = await this.getBalance(agenciaOrig, contaOrig);
-    const destAccount = await this.getBalance(agenciaDest, contaDest);
+    const origAccount = await this.getAccount(contaOrig);
+    const destAccount = await this.getAccount(contaDest);
 
-    if (agenciaOrig !== agenciaDest) {
+    if (origAccount.agencia !== destAccount.agencia) {
       origAccount.balance = origAccount.balance - 8 - balance;
+    } else {
+      origAccount.balance = origAccount.balance - balance;
     }
     destAccount.balance = destAccount.balance + balance;
     origAccount.save();
@@ -85,18 +98,19 @@ class AccountService {
         const agencys = await this.dbContext.aggregateByAgency();
 
         for (let agency of agencys) {
-          let account = await this.dbContext.getAccount(
+          let account = await this.dbContext.getTransferPrivateAccount(
             { agencia: agency._id },
             { balance: -1 },
             1
           );
-          account.agencia = 99;
-          account.save();
+          account[0].agencia = 99;
+          account[0].save();
         }
       }
     } catch (error) {
       return error;
     }
+    accounts = await this.dbContext.getAccount({ agencia: 99 });
 
     return accounts;
   };

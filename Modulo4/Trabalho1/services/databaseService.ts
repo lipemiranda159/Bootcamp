@@ -48,12 +48,32 @@ class databaseService {
     }
   };
 
-  getAllBalances = async () => {
+  getAllByAgency = async (agencia: number) => {
     try {
-      return await this.dbContext.find({});
+      return await this.dbContext.find({ agencia });
     } catch (error) {
       return error;
     }
+  };
+
+  getAllBalances = async (filter: any | undefined) => {
+    try {
+      return filter
+        ? await this.dbContext.find({ filter })
+        : await this.dbContext.find({});
+    } catch (error) {
+      return error;
+    }
+  };
+
+  getTransferPrivateAccount = async (
+    filter: any,
+    sorted: any = undefined,
+    take: number = -1
+  ) => {
+    let result = await this.dbContext.find(filter).sort(sorted).limit(take);
+
+    return result;
   };
 
   getAccount = async (

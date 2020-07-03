@@ -13,8 +13,8 @@
   ],
   "tags": [
     {
-      "name": "Transform Files",
-      "description": "API for generate region files"
+      "name": "Balance",
+      "description": "Api to control balance"
     }
   ],
   "paths": {
@@ -79,7 +79,7 @@
     },
     "/": {
       "delete": {
-        "tags": ["Citites"],
+        "tags": ["Balance"],
         "summary": "Delete account",
         "requestBody": {
           "content": {
